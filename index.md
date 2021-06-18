@@ -6,6 +6,6 @@
 <body>
 <h1>Title</h1>
 <p>Paragraph.</p>
-  <script src = "Pendulum.js"></script>
+  <script src = "PendulumScript.js"></script>
 </body>
 </html>
