@@ -1,5 +1,8 @@
 body {
   font-family: system-ui, sans-serif;;
+  .content {
+  max-width: 500px;
+  margin: auto;
   color: white;
   text-align: center;
 }
