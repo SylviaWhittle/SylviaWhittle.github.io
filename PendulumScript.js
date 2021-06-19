@@ -21,8 +21,8 @@ function roundedRect(x1, y1, x2, y2, cornerSize, colour)
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
-const width = (canvas.width = window.innerWidth);
-const height = (canvas.height = window.innerHeight);
+const width = (canvas.width);
+const height = (canvas.height);
 
 let startTime = 0.0;
 let time = startTime;
@@ -83,20 +83,20 @@ function main() {
 // Runge-Kutta 4th order ODE solving scheme
 function UpdatePendulum()
 {
-  
+
 }
 
 function ODE1(_time, _theta, _omega)
 {
   dtheta = omega;
-  
+
   return dtheta
 }
 
 function ODE2(_time, _theta, _omega)
 {
   domega = -omega/Q - Math.sin(theta) + A * Math.cos(drivingFreq * time)
-  
+
   return domega
 }
 
@@ -105,24 +105,24 @@ function RK4()
 {
   var k11 = timestep * ODE1(time, theta, omega);
   var k12 = timestep * ODE2(time, theta, omega);
-  
+
   var k21 = timestep * ODE1(time + timestep/2.0, theta + k11/2.0, omega + k12/2.0);
   var k22 = timestep * ODE2(time + timestep/2.0, theta + k11/2.0, omega + k12/2.0);
-  
+
   var k31 = timestep * ODE1(time + timestep/2.0, theta + k21/2.0, omega + k22/2.0);
   var k32 = timestep * ODE2(time + timestep/2.0, theta + k22/2.0, omega + k22/2.0);
-  
+
   var k41 = timestep * ODE1(time + timestep, theta + k31, omega + k32);
   var k42 = timestep * ODE2(time + timestep, theta + k31, omega + k32);
-  
+
   oldtheta = theta;
   theta = theta + 1.0/6.0 * (k11 + 2.0 * k21 + 2.0 * k31 + k41);
   oldomega = omega;
   omega = omega + 1.0/6.0 * (k12 + 2.0 * k22 + 2.0 * k32 + k42);
-  
+
   // Update time
   time = time + timestep;
-  
+
 }
 
 
@@ -132,17 +132,16 @@ function DrawPendulum()
 
   // Clear the pendulum area
   ctx.clearRect(plotsCenterX - plotSize - plotSeparation - plotSize/2, plotsCenterY - plotSize/2, plotSize, plotSize);
-  
+
   // Draw Pendulum Background
     // Shadow
   roundedRect(plotsCenterX - plotSize - plotSeparation - plotSize/2 + shadowOffset, plotsCenterY - plotSize/2 + shadowOffset, plotsCenterX - plotSize - plotSeparation + plotSize/2 + shadowOffset, plotsCenterY + plotSize/2 + shadowOffset, 10, shadowColour);
     // Background
   roundedRect(plotsCenterX - plotSize - plotSeparation - plotSize/2, plotsCenterY - plotSize/2, plotsCenterX - plotSize - plotSeparation + plotSize/2, plotsCenterY +   plotSize/2, 10, plotBackgroundColour);
-  
+
   // List Parameters
-  ctx.font = "30px Arial";
+  ctx.font = "22px sans-serif";
   ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-  ctx.font = '30px courier';
   ctx.fillText("Pendulum", plotsCenterX - plotSize - plotSize/2 - plotSeparation, plotsCenterY + plotSize/2 + 30);
   ctx.fillText("Phase Portrait", plotsCenterX - plotSize/2, plotsCenterY + plotSize/2 + 30);
   ctx.fillText("Poincare Section", plotsCenterX + plotSize - plotSize/2 + plotSeparation, plotsCenterY + plotSize/2 + 30);
@@ -154,7 +153,7 @@ function DrawPendulum()
   var cy = oy + length * Math.cos(theta);
 
 
-  // Draw line 
+  // Draw line
   ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
   ctx.fillStyle = 'rgba(255, 255, 255, 1)';
   ctx.beginPath();
@@ -175,7 +174,7 @@ function DrawPendulum()
   ctx.fillStyle = "rgba(212, 117, 117, 0.5)";
   ctx.fill();
   ctx.stroke();
-  
+
   // Phase Portrait
   ctx.beginPath();
   ctx.moveTo(plotsCenterX+ plotSize/2*Math.sin(oldtheta), plotsCenterY - 50*oldomega);
@@ -183,17 +182,12 @@ function DrawPendulum()
   ctx.strokeStyle = "rgba(212, 117, 117, 0.5)";
   ctx.stroke();
   ctx.closePath();
-  
+
   // Poincare section
   ctx.fillStyle = "rgba(212, 117, 117, 0.5)";
   if((Math.sin(drivingFreq * time) > 0) & (Math.sin(drivingFreq * (time - timestep)) < 0))
     {
       ctx.fillRect(plotsCenterX + plotSize + plotSeparation + plotSize/2 * Math.sin(theta), plotsCenterY - 50 * omega, 2, 2);
     }
-  
+
 }
-
-
-
-
-
