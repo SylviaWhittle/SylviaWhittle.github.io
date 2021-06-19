@@ -1,10 +1,14 @@
 body {
   font-family: system-ui, sans-serif;;
-  background: #C48484;
-  .content {
-  max-width: 500px;
-  margin: auto;
-  }
+  background: #d0acac;
   color: white;
   text-align: center;
+}
+
+.header {
+  padding: 5px;
+  text-align: center;
+  background: #721abc26;
+  color: white;
+  font-size: 20px;
 }
