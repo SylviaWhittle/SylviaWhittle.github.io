@@ -21,16 +21,16 @@ function roundedRect(x1, y1, x2, y2, cornerSize, colour)
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
-const width = (canvas.width);
-const height = (canvas.height);
+let width = (canvas.width = window.innerWidth/2);
+let height = (canvas.height = window.innerHeight/3);
 
 let startTime = 0.0;
 let time = startTime;
 
 let plotsCenterY = height/2;
 let plotsCenterX = width/2;
-let plotSize = 280;
-let plotSeparation = 50;
+let plotSize = width/4;
+let plotSeparation = plotSize/4;
 let shadowOffset = 5;
 let plotBackgroundColour = '#2E2E2E';
 let shadowColour = '#202020';
@@ -49,7 +49,7 @@ let drivingFreq = 0.67;
 let Q = 2.0;
 let A = 1.15;
 
-let length = 100;
+let length = plotSize/2.2;
 
 let timestep = 0.05;
 
@@ -146,7 +146,7 @@ function DrawPendulum()
   ctx.fillText("Phase Portrait", plotsCenterX - plotSize/2, plotsCenterY + plotSize/2 + 30);
   ctx.fillText("Poincare Section", plotsCenterX + plotSize - plotSize/2 + plotSeparation, plotsCenterY + plotSize/2 + 30);
 
-  var ox = plotsCenterX - 280 - 50;
+  var ox = plotsCenterX - plotSize - plotSeparation;
   var oy = plotsCenterY;
 
   var cx = ox + length * Math.sin(theta);
@@ -177,8 +177,8 @@ function DrawPendulum()
 
   // Phase Portrait
   ctx.beginPath();
-  ctx.moveTo(plotsCenterX+ plotSize/2*Math.sin(oldtheta), plotsCenterY - 50*oldomega);
-  ctx.lineTo(plotsCenterX+ plotSize/2*Math.sin(theta), plotsCenterY-50*omega);
+  ctx.moveTo(plotsCenterX+ plotSize/2*Math.sin(oldtheta), plotsCenterY - plotSize/5.5*oldomega);
+  ctx.lineTo(plotsCenterX+ plotSize/2*Math.sin(theta), plotsCenterY-plotSize/5.5*omega);
   ctx.strokeStyle = "rgba(212, 117, 117, 0.5)";
   ctx.stroke();
   ctx.closePath();
@@ -187,7 +187,7 @@ function DrawPendulum()
   ctx.fillStyle = "rgba(212, 117, 117, 0.5)";
   if((Math.sin(drivingFreq * time) > 0) & (Math.sin(drivingFreq * (time - timestep)) < 0))
     {
-      ctx.fillRect(plotsCenterX + plotSize + plotSeparation + plotSize/2 * Math.sin(theta), plotsCenterY - 50 * omega, 2, 2);
+      ctx.fillRect(plotsCenterX + plotSize + plotSeparation + plotSize/2 * Math.sin(theta), plotsCenterY - plotSize/5.5 * omega, 2, 2);
     }
 
 }
