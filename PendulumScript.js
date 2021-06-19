@@ -27,8 +27,8 @@ const height = (canvas.height = window.innerHeight);
 let startTime = 0.0;
 let time = startTime;
 
-let plotsCenterY = 150;
-let plotsCenterX = 500;
+let plotsCenterY = height/2;
+let plotsCenterX = width/2;
 let plotSize = 280;
 let plotSeparation = 50;
 let shadowOffset = 5;
