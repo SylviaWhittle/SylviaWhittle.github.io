@@ -131,7 +131,7 @@ function DrawPendulum()
 {
 
   // Clear the pendulum area
-  ctx.clearRect(plotsCenterX - 560 - 50, plotsCenterY - 280, plotsCenterX - 50 , plotsCenterY + 280);
+  ctx.clearRect(plotsCenterX - plotSize - plotSeparation - plotSize/2, plotsCenterY - plotSize/2, plotSize, plotSize);
   
   // Draw Pendulum Background
     // Shadow
