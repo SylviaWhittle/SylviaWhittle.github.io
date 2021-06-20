@@ -140,8 +140,8 @@ function DrawPendulum()
   roundedRect(plotsCenterX - plotSize - plotSeparation - plotSize/2, plotsCenterY - plotSize/2, plotsCenterX - plotSize - plotSeparation + plotSize/2, plotsCenterY +   plotSize/2, 10, plotBackgroundColour);
 
   // List Parameters
-  ctx.font = "22px sans-serif";
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+  ctx.font = "20px sans-serif";
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
   ctx.fillText("Pendulum", plotsCenterX - plotSize - plotSize/2 - plotSeparation, plotsCenterY + plotSize/2 + 30);
   ctx.fillText("Phase Portrait", plotsCenterX - plotSize/2, plotsCenterY + plotSize/2 + 30);
   ctx.fillText("Poincare Section", plotsCenterX + plotSize - plotSize/2 + plotSeparation, plotsCenterY + plotSize/2 + 30);

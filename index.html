@@ -1,26 +1,106 @@
-<html>
-<head>
-<title> Sylvia's Page </title>
-<link rel="shortcut icon" type="image/x-icon" href="ProfileImage.ico">
- <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="header">
-  <h1>Sylvia Whittle</h1>
-  <p>A page for my projects</p>
-</div>
- <div class="content">
-   <div style = "text-align:center;">
-    <canvas  id="canvas"></canvas>
-    <script>
-      var _canvas = document.getElementById("canvas");
-      _canvas.width = window.innerWidth/2;
-      _canvas.height = window.innerHeight/3;
-      <!-- Draw border -->
-      <!-- _canvas.style="border:1px solid  #c3c3c3;"; -->
-    </script>
-    <script src = "PendulumScript.js"></script>
-   </div>
-</div>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!--  -->
+      <meta charset = "UTF-8">
+      <meta name = "viewport" content = "width=device_width, initial-scale=1.0">
+      <title> Sylvia's Page </title>
+      <link rel="shortcut icon" type="image/x-icon" href="ProfileImage.ico">
+      <link rel="stylesheet" href="style.css">
+      <!-- Style sheet that evens out different browser quirks -->
+      <link rel="stylesheet"
+      href = "https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+      <!-- For logos etc -->
+      <link rel="stylesheet"
+      href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11/css/all.css"
+      integrity = "sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+      <!-- Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+
+
+   </head>
+   <body>
+      <header>
+         <!-- BUTTON
+         <button class="nav-toggle" aria-label="toggle navigation">
+            <span class="hamburger"></span>
+         </button> -->
+
+         <!-- NAVMENU -->
+         <nav class="nav">
+            <ul class="nav__list">
+               <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+               <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+               <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+               <li class="nav__item"><a href="#work" class="nav__link">My Work</a></li>
+               <li class="nav__item"><a href="#portfolio" class="nav__link">Portfolio</a></li>
+            </ul>
+         </nav>
+      </header>
+
+      <!-- Introduction -->
+      <section class="intro" id="home">
+         <section class="section__title--main">
+            <h1 class="section__title section__title--intro">Sylvia Whittle
+            </h1>
+            <p class="section__subtitle section__subtitle--intro">Project page </p>
+         </section>
+      </section>
+
+      <!-- About me -->
+      <section class="about-me" id="about">
+         <h2 class="section__title section__title--about">About Me</h2>
+         <p class="section__subtitle section__subtitle--about"></p>
+
+         <div class="about-me__body">
+            <p>Physics Graduate, game developer</p>
+         </div>
+      </section> <!-- / about me -->
+
+
+
+      <!-- My work -->
+      <section class="my-work" id="work">
+         <h2 class="section__title"> My work </h2>
+         <p class="section__subtitle"></p>
+
+         <!-- Portfolio item 01 -->
+         <div class="portfolio">
+            <a href="#portfolio" class="portfolio__item"></a>
+
+         </div>
+      </section>
+
+         <!-- Add email
+         <a href="email_link" class="footer-link"> Email_link </a>
+      </footer>-->
+
+
+      <!--
+      <div class="header">
+         <h1>Sylvia Whittle</h1>
+         <p>A page for my projects</p>
+      </div>
+   -->
+
+      <div class="content">
+         <div style = "text-align:center;">
+            <canvas  id="canvas"></canvas>
+            <script>
+               var _canvas = document.getElementById("canvas");
+               _canvas.width = window.innerWidth/2;
+               _canvas.height = window.innerHeight/3;
+            </script>
+            <script src = "PendulumScript.js"></script>
+         </div>
+      </div>
+
+      <img src="keeb.jpeg" alt="keeb.jpeg" class="portfolio__img">
+
+      <!-- Footer -->
+      <footer>
+
+
+
+   </body>
 </html>

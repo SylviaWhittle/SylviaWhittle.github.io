@@ -1,3 +1,152 @@
+*,
+*::before,
+*::after{
+   box-sizing: border-box;
+}
+
+/* Custom Properties */
+:root {
+   --ff-secondary: 'Source Sans Pro', sans-serif;
+   --ff-primary: 'Source Code Pro', monospace;
+
+   --fw-reg: 300;
+   --fw-bold: 900;
+
+   --clr-light: #fff;
+   --clr-dark: #303030;
+   --clr-accent: #E6A9A9;
+
+   --fs-h1: 3rem;
+   --fs-h2: 2.25rem;
+   --fs-h3: 1.25rem;
+   --fs-body: 1rem;
+}
+
+@media (min-width: 800px){
+   :root {
+      --fs-h1: 4.5rem;
+      --fs-h2: 3.75rem;
+      --fs-h3: 1.5rem;
+      --fs-body: 1.125rem;
+   }
+}
+
+/* General Styles */
+
+body {
+   background: var(--clr-light);
+   color: var(--clr-dark);
+   margin: 0;
+   font-family: var(--ff-primary);
+   font-size:  var(--fs-body);
+   line-height: 1.6;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  border-radius: 8px;
+}
+
+section {
+   padding: 2em 2em;
+}
+
+img {
+   display: block;
+   max-width: 100%;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+   line-height: 1;
+   margin: 0;
+}
+
+h1 {fontsize: var(--fs-h1)}
+h2 {fontsize: var(--fs-h2)}
+h3 {fontsize: var(--fs-h3)}
+
+.section__title{
+   margin-bottom: .25em;
+   background: none;
+   text-align: center;
+}
+
+/* Main title */
+.section__title--main {
+   font-weight: normal;
+   background: var(--clr-accent);
+   text-align: center;
+   color: var(--clr-light)
+}
+
+.section__title--intro{
+   font-weight: var(--fw-reg)
+   text-align: center;
+}
+
+.section__subtitle{
+   margin: 0;
+   font-size: var(--fs-h3);
+   text-align: center;
+}
+
+.section__subtitle--intro,
+.section__subtitle--about {
+   background: var(--clr-accent);
+   font-family: var(--ff-secondary);
+   margin-bottom: 1em;
+   text-align: center;
+}
+
+.about-me__body {
+   text-align: center;
+}
+
+/* Header */
+nav { diplay: none; }
+
+/* Nav list */
+.nav__list {
+   list-style: none;
+   display: flex;
+   height: 100%;
+   flex-direction: row;
+   justify-content: space-evenly;
+   align-items: center;
+   margin: 0;
+   margin-top: 1em;
+   padding: 0;
+}
+
+.nav__link {
+   color: inherit;
+   font-weight: var(--fw-bold);
+   font-size: var(--fs-h3);
+   text-decoration: none;
+}
+
+.nav__link:hover {
+   color: var(--clr-accent);
+}
+
+/* Intro section */
+.intro {
+   position: relative;
+
+}
+
+
+
+}
+
+/* OLD STUFF */
+/*
 body {
   font-family: system-ui, sans-serif;;
   background: #d0acac;
@@ -12,3 +161,4 @@ body {
   color: white;
   font-size: 20px;
 }
+*/
