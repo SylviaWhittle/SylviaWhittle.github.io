@@ -127,6 +127,10 @@ h3 {fontsize: var(--fs-h3)}
    text-align: center;
 }
 
+.my-work__body {
+   text-align: center;
+}
+
 /* Header */
 nav { display: none; }
 
