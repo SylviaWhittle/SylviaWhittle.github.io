@@ -31,6 +31,23 @@
    }
 }
 
+/* Colourful text for navbar item */
+#colourful {
+   background-color: #ff8177;
+   background-image: linear-gradient(to top, #ff8177 0%, #ffb199 100%);
+   background-size: 100%;
+   -webkit-background-clip: text;
+   -moz-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   -moz-text-fill-color: transparent;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   text-decoration: none;
+   font-size: 2rem;
+   text-align: center;
+}
+
 /* General Styles */
 
 body {
@@ -59,7 +76,7 @@ img {
    max-width: 100%;
 }
 
-/* Typography */
+/* Header spacing */
 h1,
 h2,
 h3 {
@@ -67,26 +84,28 @@ h3 {
    margin: 0;
 }
 
+/* Fontsize for headers */
 h1 {fontsize: var(--fs-h1)}
 h2 {fontsize: var(--fs-h2)}
 h3 {fontsize: var(--fs-h3)}
 
+/* Title section */
 .section__title{
    margin-bottom: .25em;
    background: none;
    text-align: center;
 }
 
-/* Main title */
+/* Main title and background for it */
 .section__title--main {
    font-weight: normal;
-   background: var(--clr-accent);
+   /*background: var(--clr-accent);*/
    text-align: center;
    color: var(--clr-light)
 }
 
-.section__title--intro{
-   font-weight: var(--fw-reg)
+.section__title--intro {
+   font-weight: var(--fw-reg);
    text-align: center;
 }
 
@@ -98,7 +117,7 @@ h3 {fontsize: var(--fs-h3)}
 
 .section__subtitle--intro,
 .section__subtitle--about {
-   background: var(--clr-accent);
+   /*background: var(--clr-accent);*/
    font-family: var(--ff-secondary);
    margin-bottom: 1em;
    text-align: center;
@@ -109,7 +128,7 @@ h3 {fontsize: var(--fs-h3)}
 }
 
 /* Header */
-nav { diplay: none; }
+nav { display: none; }
 
 /* Nav list */
 .nav__list {
@@ -131,6 +150,7 @@ nav { diplay: none; }
    text-decoration: none;
 }
 
+/* Apply colour shift with hover */
 .nav__link:hover {
    color: var(--clr-accent);
 }
@@ -141,24 +161,3 @@ nav { diplay: none; }
 
 }
 
-
-
-}
-
-/* OLD STUFF */
-/*
-body {
-  font-family: system-ui, sans-serif;;
-  background: #d0acac;
-  color: white;
-  text-align: center;
-}
-
-.header {
-  padding: 5px;
-  text-align: center;
-  background: #721abc26;
-  color: white;
-  font-size: 20px;
-}
-*/
