@@ -21,8 +21,8 @@ function roundedRect(x1, y1, x2, y2, cornerSize, colour)
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
-let width = (canvas.width = window.innerWidth/2);
-let height = (canvas.height = window.innerHeight/3);
+let width = (canvas.width = 600);
+let height = (canvas.height = 400);
 
 let startTime = 0.0;
 let time = startTime;
