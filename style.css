@@ -46,6 +46,65 @@
    text-decoration: none;
    font-size: 2rem;
    text-align: center;
+   font-weight: var(--fw-reg);
+}
+
+#colourful2 {
+   /*background-color: #adffea;
+   background-image: linear-gradient(to top, #b8dfd3 0%, #1fc085 100%);
+   background-size: 100%;
+   -webkit-background-clip: text;
+   -moz-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   -moz-text-fill-color: transparent;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   text-decoration: none;
+   font-size: 2rem;
+   text-align: center; */
+
+   
+}
+
+
+/* My work  */
+
+.main-title {
+   background-color: #ff8177;
+   background-image: linear-gradient(to top, #ff8177 0%, #ffb199 100%);
+   background-size: 100%;
+   -webkit-background-clip: text;
+   -moz-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   -moz-text-fill-color: transparent;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   text-decoration: none;
+   font-size: 2rem;
+   text-align: center;
+   font-weight: var(--clr);
+}
+
+.my-work__link {
+   font-size: 2rem;
+   font-weight:var(--fw-reg) ;
+   background: -webkit-linear-gradient(rgb(175, 234, 245), rgb(19, 148, 120));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   text-align: center;
+   align-items: center;
+   font-family: var(--ff-primary);
+   margin-bottom: ;
+} .my-work__link:hover {
+   font-size: 2rem;
+   background: -webkit-linear-gradient(rgb(98, 129, 134), rgb(5, 65, 52));
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   text-align: center;
+   align-items: center;
+   font-family: var(--ff-primary);
 }
 
 /* General Styles */
@@ -57,6 +116,8 @@ body {
    font-family: var(--ff-primary);
    font-size:  var(--fs-body);
    line-height: 1.6;
+   justify-content: center;
+   align-items: center;
 }
 
 img {
@@ -86,11 +147,11 @@ h3 {
 
 /* Fontsize for headers */
 h1 {fontsize: var(--fs-h1)}
-h2 {fontsize: var(--fs-h2)}
 h3 {fontsize: var(--fs-h3)}
 
 /* Title section */
 .section__title{
+   margin-top: .25em;
    margin-bottom: .25em;
    background: none;
    text-align: center;
@@ -134,7 +195,7 @@ h3 {fontsize: var(--fs-h3)}
 /* Header */
 nav { display: none; }
 
-/* Nav list */
+/* Nav list 
 .nav__list {
    list-style: none;
    display: flex;
@@ -145,23 +206,22 @@ nav { display: none; }
    margin: 0;
    margin-top: 1em;
    padding: 0;
-}
+} */
 
-.nav__link {
+/*.nav__link {
    color: inherit;
    font-weight: var(--fw-bold);
    font-size: var(--fs-h3);
    text-decoration: none;
-}
+} */
 
-/* Apply colour shift with hover */
+/* Apply colour shift with hover 
 .nav__link:hover {
    color: var(--clr-accent);
-}
+} */
 
-/* Intro section */
+/* Intro section 
 .intro {
    position: relative;
-
-}
+} */
 

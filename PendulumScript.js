@@ -35,7 +35,7 @@ let plotSize = canvas.width/4;
 let plotSeparation = plotSize/4;
 let shadowOffset = 5;
 let plotBackgroundColour = 'rgba(60, 60, 60, 1)';
-let shadowColour = 'rgba(32, 32, 32, 1)';
+let shadowColour = 'rgba(255, 255, 255, 1)';
 
 let x1_0 = 0.0;
 let x2_0 = 0.0;
