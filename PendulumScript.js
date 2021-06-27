@@ -23,8 +23,8 @@ const ctx = canvas.getContext("2d");
 
 let width = window.innerWidth;
 let height = window.innerHeight;
-canvas.height = height/5;
-canvas.width = canvas.height * 3;
+canvas.width = width/1.5;
+canvas.height = canvas.width/2;
 
 let startTime = 0.0;
 let time = startTime;
