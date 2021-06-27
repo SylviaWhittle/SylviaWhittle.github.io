@@ -21,15 +21,17 @@ function roundedRect(x1, y1, x2, y2, cornerSize, colour)
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
-let width = (canvas.width = 600);
-let height = (canvas.height = 400);
+let width = window.innerWidth;
+let height = window.innerHeight;
+canvas.height = height/5;
+canvas.width = canvas.height * 3;
 
 let startTime = 0.0;
 let time = startTime;
 
-let plotsCenterY = height/2;
-let plotsCenterX = width/2;
-let plotSize = width/4;
+let plotsCenterY = canvas.height/2;
+let plotsCenterX = canvas.width/2;
+let plotSize = canvas.width/4;
 let plotSeparation = plotSize/4;
 let shadowOffset = 5;
 let plotBackgroundColour = '#2E2E2E';
