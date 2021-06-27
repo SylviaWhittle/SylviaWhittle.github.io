@@ -34,8 +34,8 @@ let plotsCenterX = canvas.width/2;
 let plotSize = canvas.width/4;
 let plotSeparation = plotSize/4;
 let shadowOffset = 5;
-let plotBackgroundColour = '#2E2E2E';
-let shadowColour = '#202020';
+let plotBackgroundColour = 'rgba(60, 60, 60, 1)';
+let shadowColour = 'rgba(32, 32, 32, 1)';
 
 let x1_0 = 0.0;
 let x2_0 = 0.0;
@@ -133,7 +133,7 @@ function DrawPendulum()
 {
 
   // Clear the pendulum area
-  ctx.clearRect(plotsCenterX - plotSize - plotSeparation - plotSize/2, plotsCenterY - plotSize/2, plotSize, plotSize);
+  ctx.clearRect(plotsCenterX - plotSize - plotSeparation - plotSize/2, plotsCenterY - plotSize/2 - 5, plotSize + 10, plotSize + 12);
 
   // Draw Pendulum Background
     // Shadow
