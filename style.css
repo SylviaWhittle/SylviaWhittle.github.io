@@ -189,7 +189,10 @@ h3 {fontsize: var(--fs-h3)}
 }
 
 .my-work__body {
-   text-align: center;
+   text-align: justify;
+   display: block;
+   max-width: 1000px;
+   margin: 0 auto;
 }
 
 /* Header */
