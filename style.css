@@ -96,7 +96,6 @@
    text-align: center;
    align-items: center;
    font-family: var(--ff-primary);
-   margin-bottom: ;
 } .my-work__link:hover {
    font-size: 2rem;
    background: -webkit-linear-gradient(rgb(98, 129, 134), rgb(5, 65, 52));
