@@ -37,7 +37,7 @@ const ctx = canvas.getContext("2d");
 let width = window.innerWidth;
 let height = window.innerHeight;
 canvas.width = width;
-canvas.height = canvas.width;
+canvas.height = height;
 
 let balls = [];
 let numberOfBalls = 20;
@@ -65,7 +65,7 @@ function main() {
   {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
-    ctx.fillText("test", xx, yy);
+    //ctx.fillText("test", xx, yy);
     //myball.update();
     for(i = 0; i < balls.length; i++)
     {
