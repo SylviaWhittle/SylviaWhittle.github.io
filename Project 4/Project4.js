@@ -25,8 +25,8 @@ document.body.style.backgroundColor = backgroundColor;
 
 let textOffset = 10;
 
-let simulationBorder_width = width/2;
-let simulationBorder_height = width/3.5;
+let simulationBorder_width = width/4;
+let simulationBorder_height = width/4;
 
 let simulationBorder_centerx = width/2;
 let simulationBorder_centery = height/2;
@@ -49,8 +49,8 @@ let pointLineWidth = 2;
 
 let countBox = 0;
 let countCircle = 0;
-let containerBox_width = simulationBorder_width/4;
-let containerBox_posx = simulationBorder_centerx - simulationBorder_width/4;
+let containerBox_width = simulationBorder_width/2;
+let containerBox_posx = simulationBorder_centerx;
 let containerBox_posy = simulationBorder_centery;
 let containerBox_left = containerBox_posx - containerBox_width/2;
 let containerBox_top = containerBox_posy - containerBox_width/2;
@@ -58,7 +58,7 @@ let containerBox_right = containerBox_posx + containerBox_width/2;
 let containerBox_bottom = containerBox_posy + containerBox_width/2;
 
 let containerCircle_radius = containerBox_width;
-let containerCircle_posx = simulationBorder_centerx + simulationBorder_width/4;
+let containerCircle_posx = simulationBorder_centerx;
 let containerCircle_posy = simulationBorder_centery;
 
 ctx.beginPath();
@@ -131,8 +131,10 @@ function addPoint() {
     var posy = RandomRange(simulationBorder_top, simulationBorder_top + simulationBorder_height);
 
     if(posx < containerBox_right && posx > containerBox_left && posy < containerBox_bottom && posy > containerBox_top) {
+        // Note that if the point is in the box then the point is also in the circle
         ctx.strokeStyle = boxPointColour;
         countBox += 1;
+        countCircle += 1;
 
         //console.log("box")
     } else if( ( ((posx - containerCircle_posx)**2) + ((posy - containerCircle_posy)**2) ) < containerCircle_radius**2){
@@ -155,7 +157,7 @@ function addPoint() {
     // Update estimate
 
     
-    ctx.clearRect(simulationBorder_left, simulationBorder_top - fontHeight * 3 - textOffset, simulationBorder_width, fontHeight*3 - 5);
+    ctx.clearRect(simulationBorder_left, simulationBorder_top - fontHeight * 3 - textOffset, simulationBorder_width*3, fontHeight*3 - 5);
     if(countCircle != 0 && countBox !=0) {
         estimate = countCircle/countBox;   
     }
