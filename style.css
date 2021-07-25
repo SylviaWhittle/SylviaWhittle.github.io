@@ -16,6 +16,18 @@
    --clr-dark: #303030;
    --clr-accent: #E6A9A9;
 
+   --clr-gradient-title-1-1: #f22;
+   --clr-gradient-title-1-2: #f12;
+   --clr-gradient-title-1-3: #f14;
+   --clr-gradient-title-1-4: #f17;
+   --clr-gradient-title-1-4: #f1f;
+
+   --clr-gradient-mywork-1-1: rgb(0, 151, 156);
+   --clr-gradient-mywork-1-2: rgb(0, 124, 103);
+   --clr-gradient-mywork-1-2: rgb(0, 124, 103);
+   --clr-gradient-mywork-1-2: rgb(192, 0, 0);
+   --clr-gradient-mywork-1-2: rgb(93, 58, 218);
+
    --fs-h1: 3rem;
    --fs-h2: 2.25rem;
    --fs-h3: 1.25rem;
@@ -33,64 +45,44 @@
 
 /* Colourful text for navbar item */
 #colourful {
-   background-color: #ff8177;
-   background-image: linear-gradient(to top, #ff8177 0%, #ffb199 100%);
-   background-size: 100%;
+   background: linear-gradient(147deg, rgba(249,15,216,1) 0%, rgba(245,67,119,1) 26%, rgba(252,28,28,1) 50%, rgba(255,195,13,1) 75%, rgba(114,251,89,1) 100%);
+   background-size: cover;
+   background-clip: text;
    -webkit-background-clip: text;
-   -moz-background-clip: text;
-   -webkit-text-fill-color: transparent;
-   -moz-text-fill-color: transparent;
-   display: flex;
-   align-items: center;
-   cursor: pointer;
-   text-decoration: none;
-   font-size: 2rem;
+   color: transparent;
+   font-size: 4rem;
    text-align: center;
-   font-weight: var(--fw-reg);
-}
-
-#colourful2 {
-   /*background-color: #adffea;
-   background-image: linear-gradient(to top, #b8dfd3 0%, #1fc085 100%);
-   background-size: 100%;
-   -webkit-background-clip: text;
-   -moz-background-clip: text;
-   -webkit-text-fill-color: transparent;
-   -moz-text-fill-color: transparent;
-   display: flex;
    align-items: center;
-   cursor: pointer;
-   text-decoration: none;
-   font-size: 2rem;
-   text-align: center; */
-
-   
+   font-family: var(--ff-primary);
 }
-
-
-/* My work  */
 
 .main-title {
-   background-color: #ff8177;
-   background-image: linear-gradient(to top, #ff8177 0%, #ffb199 100%);
-   background-size: 100%;
+   background: linear-gradient(147deg, 
+   var(--clr-gradient-title-1-1) 0%, 
+   var(--clr-gradient-title-1-2) 26%, 
+   var(--clr-gradient-title-1-3) 50%, 
+   var(--clr-gradient-title-1-4) 75%, 
+   var(--clr-gradient-title-1-4) 100%);
+   background-size: cover;
+   background-clip: text;
    -webkit-background-clip: text;
-   -moz-background-clip: text;
-   -webkit-text-fill-color: transparent;
-   -moz-text-fill-color: transparent;
-   display: flex;
-   align-items: center;
-   cursor: pointer;
-   text-decoration: none;
-   font-size: 2rem;
+   color: transparent;
+   font-size: 4rem;
    text-align: center;
-   font-weight: var(--clr);
+   align-items: center;
+   font-family: var(--ff-primary);
 }
 
+/* My work links  */
 .my-work__link {
    font-size: 2rem;
    font-weight:var(--fw-reg) ;
-   background: -webkit-linear-gradient(rgb(175, 234, 245), rgb(19, 148, 120));
+   background: linear-gradient(147deg,
+   var(--clr-gradient-title-1-1) 0%, 
+   var(--clr-gradient-title-1-2) 26%, 
+   var(--clr-gradient-title-1-3) 50%, 
+   var(--clr-gradient-title-1-4) 75%, 
+   var(--clr-gradient-title-1-4) 100%);   
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
    text-align: center;
@@ -119,6 +111,8 @@ body {
    align-items: center;
 }
 
+
+/* Images */
 img {
   display: block;
   margin-left: auto;
@@ -127,13 +121,9 @@ img {
   border-radius: 8px;
 }
 
+/* Sections */
 section {
    padding: 2em 2em;
-}
-
-img {
-   display: block;
-   max-width: 100%;
 }
 
 /* Header spacing */
@@ -148,7 +138,7 @@ h3 {
 h1 {fontsize: var(--fs-h1)}
 h3 {fontsize: var(--fs-h3)}
 
-/* Title section */
+/* Section Titles */
 .section__title{
    margin-top: .25em;
    margin-bottom: .25em;
@@ -156,37 +146,12 @@ h3 {fontsize: var(--fs-h3)}
    text-align: center;
 }
 
-/* Main title and background for it */
-.section__title--main {
-   font-weight: normal;
-   /*background: var(--clr-accent);*/
-   text-align: center;
-   color: var(--clr-light)
-}
-
-.section__title--intro {
-   font-weight: var(--fw-reg);
-   text-align: center;
-}
-
-.section__subtitle{
-   margin: 0;
-   font-size: var(--fs-h3);
-   text-align: center;
-}
-
-.section__subtitle--intro,
-.section__subtitle--about {
-   /*background: var(--clr-accent);*/
-   font-family: var(--ff-secondary);
-   margin-bottom: 1em;
-   text-align: center;
-}
-
+/* About me  */
 .about-me__body {
    text-align: center;
 }
 
+/* My work */
 .my-work__body {
    text-align: justify;
    display: block;
@@ -197,33 +162,5 @@ h3 {fontsize: var(--fs-h3)}
 /* Header */
 nav { display: none; }
 
-/* Nav list 
-.nav__list {
-   list-style: none;
-   display: flex;
-   height: 100%;
-   flex-direction: row;
-   justify-content: space-evenly;
-   align-items: center;
-   margin: 0;
-   margin-top: 1em;
-   padding: 0;
-} */
 
-/*.nav__link {
-   color: inherit;
-   font-weight: var(--fw-bold);
-   font-size: var(--fs-h3);
-   text-decoration: none;
-} */
-
-/* Apply colour shift with hover 
-.nav__link:hover {
-   color: var(--clr-accent);
-} */
-
-/* Intro section 
-.intro {
-   position: relative;
-} */
 
