@@ -27,6 +27,16 @@ ctx.lineWidth = 2;
 
 window.addEventListener("resize", resize);
 
+// Wait function
+function Wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+ }
+
+// Resize function
 function resize() {
     //ctx.canvas.width = window.innerWidth;
     //ctx.canvas.height = window.innerHeight;
@@ -273,27 +283,33 @@ for(var t=0; t<triangles.length; t++) {
 }
 
 // Delete triangles
+remainingTriangles = [];
 console.log("Triangles: " + triangles.length);
 console.log("Triangles to be deleted: " + trianglesToBeDeleted.length);
 for (var i=0; i<trianglesToBeDeleted.length; i++) {
-    triangles[trianglesToBeDeleted[i]] = undefined; // HERE THE LIST CHANGES AS IT IS SPLICING - NEED TO STOP THAT
+    triangles[trianglesToBeDeleted[i]] != undefined; // HERE THE LIST CHANGES AS IT IS SPLICING - NEED TO STOP THAT
     console.log("marking for deletion ")
 }
 
 console.log(triangles);
 for (var i=0; i<triangles.length; i++) {
     if(triangles[i] == undefined) {
-        triangles.splice(trianglesToBeDeleted[i], 1);
+        //triangles.splice(trianglesToBeDeleted[i], 1);
+        remainingTriangles.push(triangles[i]);
     }
 }
 
+console.log("remaining triangles: ")
+console.log(remainingTriangles);
+console.log("triangles remaining: " + remainingTriangles.length);
 
-console.log(triangles);
-console.log("triangles remaining: " + triangles.length);
-
-for(var t=0; t<triangles.length; t++) {
-    DrawTriangle(triangles[t], "red");
+for(var t=0; t<remainingTriangles.length; t++) {
+    DrawTriangle(remainingTriangles[t], "red");
 }
+
+
+Wait(5000);
+alert("end wait");
 
 
 testarray = [5, 6, 7, 8, 9];
