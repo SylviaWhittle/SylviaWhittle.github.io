@@ -76,26 +76,39 @@
 /* My work links  */
 .my-work__link {
    font-size: 2rem;
-   font-weight:var(--fw-reg) ;
+   font-weight:var(--fw-bold) ;
+
    background: linear-gradient(147deg,
    var(--clr-gradient-title-1-1) 0%, 
    var(--clr-gradient-title-1-2) 26%, 
    var(--clr-gradient-title-1-3) 50%, 
    var(--clr-gradient-title-1-4) 75%, 
    var(--clr-gradient-title-1-4) 100%);   
+
    -webkit-background-clip: text;
+   background-clip: text;
    -webkit-text-fill-color: transparent;
    text-align: center;
    align-items: center;
    font-family: var(--ff-primary);
+   transition: all 0.4s ease 0s;
+   margin: 1rem;
 } .my-work__link:hover {
+   background-clip: text;
    font-size: 2rem;
-   background: -webkit-linear-gradient(rgb(98, 129, 134), rgb(5, 65, 52));
+
+   background: -webkit-linear-gradient(
+      rgb(255, 72, 0), 
+      rgb(248, 9, 69), 
+      rgb(248, 9, 153), 
+      rgb(248, 9, 153));
+
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
    text-align: center;
    align-items: center;
    font-family: var(--ff-primary);
+   letter-spacing: 2px;
 }
 
 /* General Styles */
