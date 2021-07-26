@@ -168,6 +168,10 @@ function DrawTriangle(triangle, colour) {
     ctx.stroke();
 }
 
+
+
+
+
 // Main Script =========
 
 // Create points
@@ -179,8 +183,9 @@ for (let i=numberOfPoints-1; i>=0; i--) {
 
 // Draw points 
 for (let i=1; i<pointsArray.length; i++) {
-    DrawPoint(pointsArray[i]);
+    DrawPoint(pointsArray[i], "black");
 }
+
 
 // Create triangles array
 triangles = [];
@@ -199,9 +204,6 @@ triangles.push({p1:superTrianglePoint1, p2:superTrianglePoint2, p3:superTriangle
 
 DrawTriangle(superTriangle);
 
-// Draw circumcircle
-//circumCircle = CircumCircle(superTrianglePoint1, superTrianglePoint2, superTrianglePoint3);
-
 // Select a point
 for (var k=0; k<pointsArray.length; k++) {
     point = pointsArray[k];
@@ -209,9 +211,14 @@ for (var k=0; k<pointsArray.length; k++) {
 
     var newTriangles = [];
     var trianglesToBeDeleted = [];
+    var trianglesAfterDeletion = [];
 
     console.log("# of triangles: " + String(triangles.length))
-
+    
+    // Draw triangles DEBUG
+    for(var i=0; i<triangles.length; i++) {
+        DrawTriangle(triangles[i], "black")
+    }
 
     // Look for circumcircles whose triangle contains the point
     for (var i=0; i<triangles.length; i++) {
@@ -240,9 +247,25 @@ for (var k=0; k<pointsArray.length; k++) {
     }
 
     // Delete colliding triangles from the list
-    for (var s=0; s<trianglesToBeDeleted.length; s++) {
-        triangles.splice(trianglesToBeDeleted[s]);
+    //for (var s=0; s<trianglesToBeDeleted.length; s++) {
+    //    triangles.splice(trianglesToBeDeleted[s]);BROKENNNNNNNNNN514
+    //}
+
+    // Mark triangles for deletion
+    for (var i=0; i<trianglesToBeDeleted.length; i++) {
+        triangles[trianglesToBeDeleted[i]] = undefined;
     }
+
+    // Move all nonmarked triangles to new list
+    for(var i=0; i<triangles; i++) {
+        if(triangles[i] != undefined) {
+            trianglesAfterDeletion.push(triangles[i]);
+        }
+    }
+
+    console.log(trianglesAfterDeletion);
+
+    triangles = trianglesAfterDeletion;
 
     // Add the new triangles to the list
     for (var t=0; t<newTriangles.length; t++) {
@@ -258,8 +281,11 @@ for (var k=0; k<pointsArray.length; k++) {
     
 }
 
+console.log("number of triangles after loop: ")
+console.log(triangles.length);
+
 // Remove all points and triangles containing points from original supertriangle
-trianglesToBeDeleted = [];
+var trianglesToBeDeleted = [];
 for(var t=0; t<triangles.length; t++) {
     var triangle = triangles[t];
     DrawTriangle(triangle, "black");
@@ -282,22 +308,33 @@ for(var t=0; t<triangles.length; t++) {
     }
 }
 
-// Delete triangles
+// Delete outer triangles
 remainingTriangles = [];
+
 console.log("Triangles: " + triangles.length);
 console.log("Triangles to be deleted: " + trianglesToBeDeleted.length);
+console.log(trianglesToBeDeleted)
 for (var i=0; i<trianglesToBeDeleted.length; i++) {
-    triangles[trianglesToBeDeleted[i]] != undefined; // HERE THE LIST CHANGES AS IT IS SPLICING - NEED TO STOP THAT
+    triangles[trianglesToBeDeleted[i]] = undefined; 
     console.log("marking for deletion ")
 }
 
-console.log(triangles);
-for (var i=0; i<triangles.length; i++) {
-    if(triangles[i] == undefined) {
-        //triangles.splice(trianglesToBeDeleted[i], 1);
+//console.log(triangles);
+//for (var i=0; i<triangles.length; i++) {
+//    if(triangles[i] == undefined) {
+//        //triangles.splice(trianglesToBeDeleted[i], 1);
+//        remainingTriangles.push(triangles[i]);
+//    }
+//}
+
+
+console.log("moving to the remaining list")
+for(var i=0; i<triangles.length; i++) {
+    if(triangles[i] != undefined) {
         remainingTriangles.push(triangles[i]);
     }
 }
+
 
 console.log("remaining triangles: ")
 console.log(remainingTriangles);
@@ -308,13 +345,10 @@ for(var t=0; t<remainingTriangles.length; t++) {
 }
 
 
-Wait(5000);
-alert("end wait");
 
-
-testarray = [5, 6, 7, 8, 9];
-newtestarray = testarray.splice(3, 2);
-console.log(testarray);
-console.log(newtestarray);
+//testarray = [5, 6, 7, 8, 9];
+//newtestarray = testarray.splice(3, 2);
+//console.log(testarray);
+//console.log(newtestarray);
 
 
