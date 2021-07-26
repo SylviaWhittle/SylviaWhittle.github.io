@@ -47,7 +47,7 @@
 #colourful {
    background: linear-gradient(147deg, rgba(249,15,216,1) 0%, rgba(245,67,119,1) 26%, rgba(252,28,28,1) 50%, rgba(255,195,13,1) 75%, rgba(114,251,89,1) 100%);
    background-size: cover;
-   background-clip: text;
+   background-clip: border-box;
    -webkit-background-clip: text;
    color: transparent;
    font-size: 4rem;
@@ -64,7 +64,7 @@
    var(--clr-gradient-title-1-4) 75%, 
    var(--clr-gradient-title-1-4) 100%);
    background-size: cover;
-   background-clip: text;
+   background-clip: border-box;
    -webkit-background-clip: text;
    color: transparent;
    font-size: 4rem;
