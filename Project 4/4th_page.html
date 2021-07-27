@@ -37,9 +37,12 @@
     <!--<canvas  id="canvas3"></canvas>
     <script src = "Project3.js"></script>-->
 
+    <div style="color:#bbb">
     This is a Monte-Carlo method for estimating the value of pi. Click to start adding points, click to stop adding points. This method is very slow and inefficient but super simple. It utilises the simple relation that if one has a square of width R and a circle of radius R, then the ratio of the areas, Area_Circle/Area_Square equals pi. Now in order to estimate the area of the square and circle, we can merely take a Monte-Carlo estimate for the proportions of likelihood for a random point to lie within either shape. Each iteration places a point randomly inside the area below. If a point happens to land in the square, then a counter for the square increments, likewise for the circle. The ratio of these two counters is the estimate listed below.
+    </div>
 
-    <canvas id="canvas"></canvas>
+
+    <canvas id="canvas" style="margin-top: 100px"></canvas>
     <script src="Project4.js"></script>
 
 

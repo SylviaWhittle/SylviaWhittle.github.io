@@ -19,7 +19,8 @@ let numberOfPoints = 0;
 
 // Background colour shift
 
-let backgroundColor = 'rgba(213, 170, 6, 0.2)';
+let backgroundColor = 'rgba(40, 40, 40, 1)';
+let textColor = 'rgba(180, 180, 180, 1)';
 
 document.body.style.backgroundColor = backgroundColor;
 
@@ -161,6 +162,7 @@ function addPoint() {
     if(countCircle != 0 && countBox !=0) {
         estimate = countCircle/countBox;   
     }
+    ctx.fillStyle = textColor;
     ctx.fillText('Samples : ' + numberOfPoints, simulationBorder_left, simulationBorder_centery - simulationBorder_height/2 - textOffset - fontHeight);
     ctx.fillText('Estimate of pi: ' + estimate, simulationBorder_left, simulationBorder_centery - simulationBorder_height/2 - textOffset - fontHeight*2);
 }
