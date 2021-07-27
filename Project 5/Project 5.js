@@ -27,14 +27,37 @@ ctx.lineWidth = 2;
 
 window.addEventListener("resize", resize);
 
+
+exitWait = false;
+
 // Wait function
-function Wait(ms){
-    var start = new Date().getTime();
-    var end = start;
-    while(end < start + ms) {
-      end = new Date().getTime();
-   }
- }
+function Wait() {
+    
+    setTimeout(function onTick()
+    {
+
+        if(exitWait) {
+            //ctx.fillText("PAUSED" ,width/2, height/2);
+            
+            exitWait = false;
+        }
+        else {
+            console.log("paused");
+            Wait();
+        }
+      
+    },10)
+  }
+
+document.addEventListener("click", Unpause);
+
+function Unpause() {
+    exitWait = true;
+}
+
+function myFunction() {
+  alert ("Hello World!");
+}
 
 // Resize function
 function resize() {
@@ -172,7 +195,10 @@ function DrawTriangle(triangle, colour) {
 
 
 
-// Main Script =========
+// Main Script =========================================================
+
+// Clear canvas
+ctx.clearRect(0, 0, width, height);
 
 // Create points
 pointsArray = [];
@@ -180,9 +206,13 @@ let numberOfPoints = 4;
 for (let i=numberOfPoints-1; i>=0; i--) {
     pointsArray[i] = {x : RandomRange(width/3, width*2/3), y : RandomRange(height/3, height*2/3)}
 }
+// pointsArray.push({x:380, y:490});
+// pointsArray.push({x:480, y:580});
+// pointsArray.push({x:180, y: 390});
+// pointsArray.push({x:250, y:580});
 
 // Draw points 
-for (let i=1; i<pointsArray.length; i++) {
+for (let i=0; i<pointsArray.length; i++) {
     DrawPoint(pointsArray[i], "black");
 }
 
@@ -198,40 +228,38 @@ superTriangle = {p1 : superTrianglePoint1, p2 : superTrianglePoint2, p3 : superT
 DrawPoint(superTrianglePoint1);
 DrawPoint(superTrianglePoint2);
 DrawPoint(superTrianglePoint3);
+DrawTriangle(superTriangle, "black");
 
 // Add super triangle to triangle list
 triangles.push({p1:superTrianglePoint1, p2:superTrianglePoint2, p3:superTrianglePoint3});
 
-DrawTriangle(superTriangle);
-
-// Select a point
+// Loop through all points
 for (var k=0; k<pointsArray.length; k++) {
-    point = pointsArray[k];
+    var point = pointsArray[k];
     console.log("point " + k)
+    ctx.fillText(k, point.x, point.y);
 
     var newTriangles = [];
     var trianglesToBeDeleted = [];
-    var trianglesAfterDeletion = [];
-
-    console.log("# of triangles: " + String(triangles.length))
     
-    // Draw triangles DEBUG
-    for(var i=0; i<triangles.length; i++) {
-        DrawTriangle(triangles[i], "black")
-    }
+//     console.log("# of triangles: " + String(triangles.length))
+    
+//     // Draw triangles DEBUG
+//     for(var i=0; i<triangles.length; i++) {
+//         DrawTriangle(triangles[i], "black")
+//     }
 
     // Look for circumcircles whose triangle contains the point
     for (var i=0; i<triangles.length; i++) {
-        console.log("triangle " + i);
+        //console.log("triangle " + i);
         var triangle = triangles[i];
         //console.log(triangle);
-
         var circumCircle = CircumCircle(triangle.p1, triangle.p2, triangle.p3);
 
         // Check if the point is inside the circumcircle of the triangle
         var disp = {x : circumCircle.centre.x - point.x, y : circumCircle.centre.y - point.y};
         if(disp.x**2 + disp.y**2 <= circumCircle.radius**2) {
-            DrawPoint(point, "red")
+            //DrawPoint(point, "red")
             // Add triangle to delete list and create the new triangles
             trianglesToBeDeleted.push(i);
             var newtriangle1 = {p1 : point, p2 : triangle.p1, p3 : triangle.p2};
@@ -240,49 +268,42 @@ for (var k=0; k<pointsArray.length; k++) {
             newTriangles.push(newtriangle1);
             newTriangles.push(newtriangle2);
             newTriangles.push(newtriangle3);
-            DrawTriangle(newtriangle1);
-            DrawTriangle(newtriangle2);
-            DrawTriangle(newtriangle3);
         }
     }
 
-    // Delete colliding triangles from the list
-    //for (var s=0; s<trianglesToBeDeleted.length; s++) {
-    //    triangles.splice(trianglesToBeDeleted[s]);BROKENNNNNNNNNN514
-    //}
+    // DEBUG output if no collisions for a point
+    if(trianglesToBeDeleted.length == 0) {
+        console.log("no circumcircle collision - point: " + String(k))
+
+    }
 
     // Mark triangles for deletion
+    
     for (var i=0; i<trianglesToBeDeleted.length; i++) {
         triangles[trianglesToBeDeleted[i]] = undefined;
     }
 
     // Move all nonmarked triangles to new list
-    for(var i=0; i<triangles; i++) {
+    var trianglesAfterDeletion = [];
+    for(var i=0; i<triangles.length; i++) {
         if(triangles[i] != undefined) {
             trianglesAfterDeletion.push(triangles[i]);
         }
     }
 
-    console.log(trianglesAfterDeletion);
-
+    // Set triangle list to be the new list of surviving triangles
     triangles = trianglesAfterDeletion;
 
-    // Add the new triangles to the list
+    // Add the newly created triangles to the list
     for (var t=0; t<newTriangles.length; t++) {
         triangles.push(newTriangles[t]);
     }
-    
-    //while(true) {
-    //    if(proceed) {
-    //        break;
-    //    }
-    //}
-    //proceed = false;
-    
-}
+
+} // END POINTS LOOP
 
 console.log("number of triangles after loop: ")
 console.log(triangles.length);
+
 
 // Remove all points and triangles containing points from original supertriangle
 var trianglesToBeDeleted = [];
@@ -299,33 +320,38 @@ for(var t=0; t<triangles.length; t++) {
         trianglesToBeDeleted.push(t);
         console.log("delting outer triangle : " + triangle)
 
-        for(j=0; j<trianglesToBeDeleted.length; j++) {
-            DrawTriangle(triangles[t], 'rgba(0, 255, 0, 0.2)');
-            ctx.fillStyle = 'rgba(0, 255, 0, 0.1)';
-            ctx.fill();
-            ctx.fillStyle = "black";
-        }
+        // for(j=0; j<trianglesToBeDeleted.length; j++) {
+        //     DrawTriangle(triangles[t], 'rgba(0, 255, 0, 0.2)');
+        //     ctx.fillStyle = 'rgba(0, 255, 0, 0.1)';
+        //     ctx.fill();
+        //     ctx.fillStyle = "black";
+        // }
     }
 }
 
-// Delete outer triangles
-remainingTriangles = [];
+// // DEBUG DRAW ALL TRIANGLES
+// for(var i=0; i<triangles.length; i++) {
+//     DrawTriangle(triangles[i], 'rgba(0, 0, 255, 1)');
+// }
 
-console.log("Triangles: " + triangles.length);
-console.log("Triangles to be deleted: " + trianglesToBeDeleted.length);
-console.log(trianglesToBeDeleted)
+// Delete outer triangles
+
+remainingTriangles = [];
+//console.log("Triangles: " + triangles.length);
+//console.log("Triangles to be deleted: " + trianglesToBeDeleted.length);
+//console.log(trianglesToBeDeleted)
 for (var i=0; i<trianglesToBeDeleted.length; i++) {
     triangles[trianglesToBeDeleted[i]] = undefined; 
     console.log("marking for deletion ")
 }
 
-//console.log(triangles);
-//for (var i=0; i<triangles.length; i++) {
-//    if(triangles[i] == undefined) {
-//        //triangles.splice(trianglesToBeDeleted[i], 1);
-//        remainingTriangles.push(triangles[i]);
-//    }
-//}
+// //console.log(triangles);
+// //for (var i=0; i<triangles.length; i++) {
+// //    if(triangles[i] == undefined) {
+// //        //triangles.splice(trianglesToBeDeleted[i], 1);
+// //        remainingTriangles.push(triangles[i]);
+// //    }
+// //}
 
 
 console.log("moving to the remaining list")
@@ -347,8 +373,11 @@ for(var t=0; t<remainingTriangles.length; t++) {
 
 
 //testarray = [5, 6, 7, 8, 9];
-//newtestarray = testarray.splice(3, 2);
+//console.log("testarray: ")
 //console.log(testarray);
-//console.log(newtestarray);
+
+//testarray = [];
+//console.log("testarray deleted: ")
+//console.log(testarray);
 
 
