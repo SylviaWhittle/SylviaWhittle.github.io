@@ -92,10 +92,11 @@
    align-items: center;
    font-family: var(--ff-primary);
    transition: all 0.4s ease 0s;
-   margin: 1vh;
+   margin-top: 5vh;
+   margin-bottom: 5vh;
 } .my-work__link:hover {
    background-clip: text;
-   font-size: 2rem;
+   font-size: 4.2vw;
 
    background: -webkit-linear-gradient(
       rgb(255, 72, 0), 
@@ -162,18 +163,28 @@ h3 {font-size: var(--fs-h3)}
 /* About me  */
 .about-me__body {
    text-align: center;
+   margin-left: 5vw;
+   margin-right: 5vw;
 }
 
 /* My work */
 .my-work__body {
-   text-align: justify;
+   text-align: center;
    display: block;
-   max-width: 1000px;
-   margin: 0 auto;
+   margin-left: 5vw;
+   margin-right: 5vw;
 }
 
 /* Header */
 nav { display: none; }
+
+/* Contact info */
+.contact-info {
+   text-align: center;
+   color:rgb(143, 142, 142);
+   margin-top: 5vh;
+   margin-bottom: 5vh;
+}
 
 
 
