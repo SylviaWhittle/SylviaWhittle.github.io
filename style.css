@@ -50,7 +50,7 @@
    background-clip: border-box;
    -webkit-background-clip: text;
    color: transparent;
-   font-size: 4rem;
+   font-size: 8vw;
    text-align: center;
    align-items: center;
    font-family: var(--ff-primary);
@@ -67,7 +67,7 @@
    background-clip: border-box;
    -webkit-background-clip: text;
    color: transparent;
-   font-size: 4rem;
+   font-size: 12vw;
    text-align: center;
    align-items: center;
    font-family: var(--ff-primary);
@@ -75,7 +75,7 @@
 
 /* My work links  */
 .my-work__link {
-   font-size: 2rem;
+   font-size: 4vw;
    font-weight:var(--fw-bold) ;
 
    background: linear-gradient(147deg,
@@ -92,7 +92,7 @@
    align-items: center;
    font-family: var(--ff-primary);
    transition: all 0.4s ease 0s;
-   margin: 1rem;
+   margin: 1vh;
 } .my-work__link:hover {
    background-clip: text;
    font-size: 2rem;
@@ -148,8 +148,8 @@ h3 {
 }
 
 /* Fontsize for headers */
-h1 {fontsize: var(--fs-h1)}
-h3 {fontsize: var(--fs-h3)}
+h1 {font-size: var(--fs-h1)}
+h3 {font-size: var(--fs-h3)}
 
 /* Section Titles */
 .section__title{
