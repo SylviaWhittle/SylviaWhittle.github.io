@@ -59,13 +59,13 @@ let timestep = 0.05;
 
   // Draw Phase Portrait Background
     // Shadow
-  roundedRect(plotsCenterX - plotSize/2 + shadowOffset, plotsCenterY - plotSize/2 + shadowOffset, plotsCenterX + plotSize/2 + shadowOffset, plotsCenterY + plotSize/2 + shadowOffset, 10, shadowColour)
+  //roundedRect(plotsCenterX - plotSize/2 + shadowOffset, plotsCenterY - plotSize/2 + shadowOffset, plotsCenterX + plotSize/2 + shadowOffset, plotsCenterY + plotSize/2 + shadowOffset, 10, shadowColour)
     // Background
   roundedRect(plotsCenterX - plotSize/2, plotsCenterY - plotSize/2, plotsCenterX + plotSize/2, plotsCenterY + plotSize/2, 10, plotBackgroundColour)
 
   // Draw Poincare Section Background
     // Shadow
-  roundedRect(plotsCenterX + plotSize + plotSeparation - plotSize/2 + shadowOffset, plotsCenterY - plotSize/2 + shadowOffset, plotsCenterX + plotSize + plotSeparation + plotSize/2 + shadowOffset, plotsCenterY + plotSize/2 + shadowOffset, 10, shadowColour)
+  //roundedRect(plotsCenterX + plotSize + plotSeparation - plotSize/2 + shadowOffset, plotsCenterY - plotSize/2 + shadowOffset, plotsCenterX + plotSize + plotSeparation + plotSize/2 + shadowOffset, plotsCenterY + plotSize/2 + shadowOffset, 10, shadowColour)
     // Background
   roundedRect(plotsCenterX + plotSize + plotSeparation - plotSize/2, plotsCenterY - plotSize/2, plotsCenterX + plotSize + plotSeparation + plotSize/2, plotsCenterY + plotSize/2, 10, plotBackgroundColour)
 
@@ -137,7 +137,7 @@ function DrawPendulum()
 
   // Draw Pendulum Background
     // Shadow
-  roundedRect(plotsCenterX - plotSize - plotSeparation - plotSize/2 + shadowOffset, plotsCenterY - plotSize/2 + shadowOffset, plotsCenterX - plotSize - plotSeparation + plotSize/2 + shadowOffset, plotsCenterY + plotSize/2 + shadowOffset, 10, shadowColour);
+  //roundedRect(plotsCenterX - plotSize - plotSeparation - plotSize/2 + shadowOffset, plotsCenterY - plotSize/2 + shadowOffset, plotsCenterX - plotSize - plotSeparation + plotSize/2 + shadowOffset, plotsCenterY + plotSize/2 + shadowOffset, 10, shadowColour);
     // Background
   roundedRect(plotsCenterX - plotSize - plotSeparation - plotSize/2, plotsCenterY - plotSize/2, plotsCenterX - plotSize - plotSeparation + plotSize/2, plotsCenterY +   plotSize/2, 10, plotBackgroundColour);
 
