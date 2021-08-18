@@ -22,9 +22,13 @@
             <section class="glass">
                 <h4>My work</h4>
 
-                <a class="my-work-link" href="../Project 2/2nd_page.html"> <h4> Test Project</h4> </a>
+                <a class="btn-grad" href="../Project 2/2nd_page.html"> <div class="text-link"> Test Project</div> </a>
+                <a class="btn-grad" href="../Project 3/3rd_page.html"> <div class="text-link"> Perlin Noise</div> </a>
+                <a class="btn-grad" href="../Project 4/4th_page.html"> <div class="text-link"> Monte Carlo Pi Calculator</div> </a>
+                <a class="btn-grad" href="../Project 5/5th_page.html"> <div class="text-link"> Test project</div> </a>
 
             </section>
+
 
             <section class="glass">
                 <h4>Example project: Damped Driven Pendulum</h4>
@@ -33,13 +37,23 @@
                     The Phase Portrait graph is a representation of the pendulum's motion in phase space, with the vertical axis being velocity and the horizontal axis being the angle. Note that this graph is wrapped from -pi to pi.
                     
                     The Poincare Section is a periodic sampling of the datapoints in line with the driving frequency of the pendulum. This results in a shape being produced that is fractal in nature and is a visual representation of a Strange Attractor. In case you are interested in reproducing this result, the variables are: Driving frequency: 0.67, Damping coefficient: 2.0, Driving strength: 1.15.
-                    
-                    </div>
+            
+                    <canvas  id="canvas"></canvas>
+                    <script>
+                        var _canvas = document.getElementById("canvas");
+                        //_canvas.width = window.innerWidth/2;
+                        // _canvas.height = window.innerHeight/3;
+                    </script>
+                    <script src = "../PendulumScript.js"></script>
+
+                    <!-- Chaos Report -->
+                    <a class="btn-grad" href="Chaos_Report.pdf"> <div class="text-link"> A paper I wrote as part of my degree on this topic</div></a>        
+                </div>
             </section>
             
 
         </main>
-        <div class="circle1"></div>
-        <div class="circle2"></div>
+        <!-- <div class="circle1"></div> -->
+        <!-- <div class="circle2"></div> -->
     </body>
 </html>
