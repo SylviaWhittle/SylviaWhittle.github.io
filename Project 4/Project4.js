@@ -19,10 +19,10 @@ let numberOfPoints = 0;
 
 // Background colour shift
 
-let backgroundColor = 'rgba(40, 40, 40, 1)';
+//let backgroundColor = 'rgba(40, 40, 40, 1)';
 let textColor = 'rgba(180, 180, 180, 1)';
 
-document.body.style.backgroundColor = backgroundColor;
+//document.body.style.backgroundColor = backgroundColor;
 
 let textOffset = 10;
 
