@@ -1,113 +1,59 @@
-<!-- Start of the HTML  -->
 <!DOCTYPE html>
-<!-- Sets the viewport of the page  -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <html lang="en">
-   <head>
-      <!--  -->
-      <meta charset = "UTF-8">
-      <meta name = "viewport" content = "width=device_width, initial-scale=1.0">
-      <title> Sylvia's Page </title>
-      <link rel="shortcut icon" type="image/x-icon" href="ProfileImage.ico">
-      <link rel="stylesheet" href="style.css">
-      <!-- Style sheet that evens out different browser quirks -->
-      <link rel="stylesheet"
-      href = "https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-      <!-- For logos etc -->
-      <link rel="stylesheet"
-      href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11/css/all.css"
-      integrity = "sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
-      <!-- Fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
-
-
-   </head>
-   <body>
-
-      <header>
-         <!-- Introduction -->
-         <section class="intro" id="home">
-            <section class="section__title--main">
-               <h1 class="main-title-glass">Sylvia Whittle</h1>
-               <p class="main-subtitle" >Project page </p>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale"/>
+        <title>Glass Website</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <main>
+            <section class="glass">
+                <h1>Sylvia Whittle</h1>
+                <h3>Project Page</h3>
             </section>
-         </section>
-      </header>
 
-      
+            <section class="glass">
+                <h4>About me</h4>
+                <div class="text" > Hi, I am Sylvia Whittle. I am a Physics graduate from Newcastle University and currently working in the Sheffield University Faculty of Engineering. My main areas of interest are computational physics, nonlinear dynamics and chaotic systems. I have a passion for programming and in my spare time I like to produce visual representations of mathematical and physical concepts.
+                </div>
+            </section>
 
-      <div class="glass-super">
+            <section class="glass">
+                <h4>My work</h4>
 
-         <!-- About me -->
-         <section class="glass-sub">
-            <h2 >About Me</h2>
+                <a class="btn-grad" href="../Project 2/2nd_page.html"> <div class="text-link"> Test Project</div> </a>
+                <a class="btn-grad" href="../Project 3/3rd_page.html"> <div class="text-link"> Perlin Noise</div> </a>
+                <a class="btn-grad" href="../Project 4/4th_page.html"> <div class="text-link"> Monte Carlo Pi Calculator</div> </a>
+                <a class="btn-grad" href="../Project 5/5th_page.html"> <div class="text-link"> Test project</div> </a>
 
-            <div class="about-me__body">
-               <p>Hi, I am Sylvia Whittle. I am a Physics graduate from Newcastle University and currently working in the Sheffield University Faculty of Engineering. My main areas of interest are computational physics, nonlinear dynamics and chaotic systems. I have a passion for programming and in my spare time I like to produce visual representations of mathematical and physical concepts.  </p>
-            </div>
-         </section> <!-- / about me -->
-
+            </section>
 
 
-         <!-- My work -->
-         <section class="my-work glass-sub" id="work">
-            <h2> My work </h2>
+            <section class="glass">
+                <h4>Example project: Damped Driven Pendulum</h4>
+                <div class="text">Chaotic dynamics in the driven, damped harmonic oscillator. The simulation below is a visualization of some work that I did in my degree. It shows the precession of a pendulum about a fixed point whilst being affected by not only gravity, but by a damping force - typically due to air resistance or friction with the pivot, and a periodic driving force, applied as the cosine of the product of the driving frequency and the time.
 
-            <a class= "my-work__link" href="Project 2/2nd_page.html"> <h2 class="my-work__link"> Test Project</h2> </a>
-
-            <a class= "my-work__link" href="Project 3/3rd_page.html"> <h2 class="my-work__link"> Perlin Noise Generator</h2> </a>
-
-            <a class= "my-work__link" href="Project 4/4th_page.html"> <h2 class="my-work__link"> Monte-Carlo estimate for pi</h2> </a>
-
-            <a class= "my-work__link" href="Project 5/5th_page.html"> <h2 class="my-work__link"> Test Project </h2> </a>
-
-            <h2 class="section__title"> Example project : Damped Driven Pendulum </h2>
-
-            <p class="my-work__body"> Chaotic dynamics in the driven, damped harmonic oscillator. The simulation below is a visualization of some work that I did in my degree. It shows the precession of a pendulum about a fixed point whilst being affected by not only gravity, but by a damping force - typically due to air resistance or friction with the pivot, and a periodic driving force, applied as the cosine of the product of the driving frequency and the time.  </p>
-            <p class="my-work__body"> The Phase Portrait graph is a representation of the pendulum's motion in phase space, with the vertical axis being velocity and the horizontal axis being the angle. Note that this graph is wrapped from -pi to pi.</p>
-            <p class="my-work__body"> The Poincare Section is a periodic sampling of the datapoints in line with the driving frequency of the pendulum. This results in a shape being produced that is fractal in nature and is a visual representation of a Strange Attractor. In case you are interested in reproducing this result, the variables are: Driving frequency: 0.67, Damping coefficient: 2.0, Driving strength: 1.15.</p>
+                    The Phase Portrait graph is a representation of the pendulum's motion in phase space, with the vertical axis being velocity and the horizontal axis being the angle. Note that this graph is wrapped from -pi to pi.
+                    
+                    The Poincare Section is a periodic sampling of the datapoints in line with the driving frequency of the pendulum. This results in a shape being produced that is fractal in nature and is a visual representation of a Strange Attractor. In case you are interested in reproducing this result, the variables are: Driving frequency: 0.67, Damping coefficient: 2.0, Driving strength: 1.15.
             
-         
+                    <canvas  id="canvas"></canvas>
+                    <script>
+                        var _canvas = document.getElementById("canvas");
+                        //_canvas.width = window.innerWidth/2;
+                        // _canvas.height = window.innerHeight/3;
+                    </script>
+                    <script src = "../PendulumScript.js"></script>
 
-            <!-- Add email
-            <a href="email_link" class="footer-link"> Email_link </a>
-         </footer>-->
-
-
-         <!--
-         <div class="header">
-            <h1>Sylvia Whittle</h1>
-            <p>A page for my projects</p>
-         </div>
-      -->
-
-         <div class="content" style="margin:10px; text-align:center;">
-            <div style = "text-align:center;">
-               <canvas  id="canvas"></canvas>
-               <script>
-                  var _canvas = document.getElementById("canvas");
-                  //_canvas.width = window.innerWidth/2;
-                  // _canvas.height = window.innerHeight/3;
-               </script>
-               <script src = "PendulumScript.js"></script>
-            </div>
-
-            <!-- Chaos Report -->
-
-            <a href="Chaos_Report.pdf" class="my-work__link" style="font-size:1em;" >A paper I wrote as part of my degree on this topic</a>
-            <!-- <embed style="margin-top:50px; margin-bottom:50px;" src="Chaos_Report.pdf" height="800px" width="100%"> -->
-         </div>
-
-      </section>
-
-      <div class="contact-info">e-mail: Sylviwhittle@gmail.com</div>
-
-      <!-- Footer -->
-      <footer>
+                    <!-- Chaos Report -->
+                    <a class="btn-grad" href="../Chaos_Report.pdf"> <div class="text-link"> A paper I wrote as part of my degree on this topic</div></a>        
+                </div>
+            </section>
             
-      </div>
 
-
-   </body>
+        </main>
+        <!-- <div class="circle1"></div> -->
+        <!-- <div class="circle2"></div> -->
+    </body>
 </html>

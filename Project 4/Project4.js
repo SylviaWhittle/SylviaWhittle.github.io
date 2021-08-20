@@ -62,17 +62,20 @@ let containerCircle_radius = containerBox_width;
 let containerCircle_posx = simulationBorder_centerx;
 let containerCircle_posy = simulationBorder_centery;
 
+// Draw outer box
 ctx.beginPath();
 ctx.strokeStyle = simulationBorder_colour;
 ctx.lineWidth = simulationBorder_lineWidth;
 ctx.rect(simulationBorder_left, simulationBorder_top, simulationBorder_width, simulationBorder_height);
 ctx.stroke();
 
-ctx.beginPath();
-ctx.strokeStyle = 'rgba(222, 111, 75, 0.5)';
-ctx.rect(containerBox_posx - containerBox_width/2, containerBox_posy - containerBox_width/2, containerBox_width, containerBox_width);
-ctx.stroke();
+// Draw inner box
+// ctx.beginPath();
+// ctx.strokeStyle = 'rgba(222, 111, 75, 0.5)';
+// ctx.rect(containerBox_posx - containerBox_width/2, containerBox_posy - containerBox_width/2, containerBox_width, containerBox_width);
+// ctx.stroke();
 
+// Draw circle
 ctx.beginPath();
 ctx.strokeStyle = 'rgba(222, 111, 75, 0.5)';
 ctx.arc(containerCircle_posx, containerCircle_posy, containerCircle_radius, 0, 2 * Math.PI);
@@ -128,39 +131,36 @@ function resize() {
 
 function addPoint() {
 
-    var posx = RandomRange(simulationBorder_left, simulationBorder_left + simulationBorder_width);
-    var posy = RandomRange(simulationBorder_top, simulationBorder_top + simulationBorder_height);
 
-    if(posx < containerBox_right && posx > containerBox_left && posy < containerBox_bottom && posy > containerBox_top) {
-        // Note that if the point is in the box then the point is also in the circle
-        ctx.strokeStyle = boxPointColour;
-        countBox += 1;
-        countCircle += 1;
+    for(let i = 0; i < 999; i++) {
+        var posx = RandomRange(simulationBorder_left, simulationBorder_left + simulationBorder_width);
+        var posy = RandomRange(simulationBorder_top, simulationBorder_top + simulationBorder_height);
 
-        //console.log("box")
-    } else if( ( ((posx - containerCircle_posx)**2) + ((posy - containerCircle_posy)**2) ) < containerCircle_radius**2){
-        ctx.strokeStyle = circlePointColour;
-        countCircle += 1;
-        //console.log("circle")
-    } else {
-        ctx.strokeStyle = defaultPointColour;
-        //console.log("default")
+        if( ( ((posx - containerCircle_posx)**2) + ((posy - containerCircle_posy)**2) ) < containerCircle_radius**2){
+            ctx.strokeStyle = circlePointColour;
+            countBox += 1;
+            countCircle += 1;
+            //console.log("circle")
+        } else {
+            ctx.strokeStyle = defaultPointColour;
+            countBox += 1;
+            //console.log("default")
+        }
+
+        ctx.beginPath();
+        
+        ctx.lineWidth = pointLineWidth;
+        ctx.arc(posx, posy, pointRadius, 0, 2 * Math.PI,);
+        ctx.stroke();
+
+        numberOfPoints += 1;
+
     }
-
-    ctx.beginPath();
-    
-    ctx.lineWidth = pointLineWidth;
-    ctx.arc(posx, posy, pointRadius, 0, 2 * Math.PI,);
-    ctx.stroke();
-
-    numberOfPoints += 1;
-
     // Update estimate
 
-    
     ctx.clearRect(simulationBorder_left, simulationBorder_top - fontHeight * 3 - textOffset, simulationBorder_width*3, fontHeight*3 - 5);
     if(countCircle != 0 && countBox !=0) {
-        estimate = countCircle/countBox;   
+        estimate = countCircle/(countBox/4);   
     }
     ctx.fillStyle = textColor;
     ctx.fillText('Samples : ' + numberOfPoints, simulationBorder_left, simulationBorder_centery - simulationBorder_height/2 - textOffset - fontHeight);
