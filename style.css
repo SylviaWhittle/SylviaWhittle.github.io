@@ -66,9 +66,17 @@ h2 {
     padding: 0.5rem;
 }
 
+.link-home {
+    color: rgba(50, 50, 50, 0.8);
+    padding: 0px;
+    margin: 5vh;
+    font-size: 3vh;
+}
+
 main {
     /* Set specific height  */
-    min-height: 50vh;
+    min-height: 100vh;
+    min-width: 100vw;
 
     /* Background image  */
     /* background: linear-gradient(to right top, #b882ff, #ca6f53); */
