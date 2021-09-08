@@ -55,10 +55,6 @@ function Unpause() {
     exitWait = true;
 }
 
-function myFunction() {
-  alert ("Hello World!");
-}
-
 // Resize function
 function resize() {
     //ctx.canvas.width = window.innerWidth;

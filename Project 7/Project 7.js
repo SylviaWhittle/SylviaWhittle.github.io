@@ -31,7 +31,7 @@ let fontHeight = 30;
 
 let lineColour = 'rgba(50, 50, 50, 0.6)';
 let backgroundColor = 'rgba(213, 170, 6, 0.2)';
-let pointRadius = 5;
+let pointRadius = 2;
 let lineWidth = 5;
 
 let axesHeight = height/1.5;
@@ -73,8 +73,10 @@ points = [];
 xStart = 0;
 xEnd = 2*Math.PI;
 xRange = xEnd - xStart;
+step = 0.01;
+lineColour = 'rgba(255,0,0,0.2)';
 
-for(var i = xStart; i<xEnd ; i+=0.1) {
+for(var i = xStart; i<xEnd ; i+=step) {
     points.push({x : axesStartx + i/xRange * axesWidth, y : axesStarty + Math.sin(i)*axesHeight/2 - axesHeight/2})
 }
 
