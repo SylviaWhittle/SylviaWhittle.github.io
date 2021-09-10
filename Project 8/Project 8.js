@@ -1,70 +1,254 @@
-// Draw rounded rectangle function for backgrounds
-function roundedRect(x1, y1, x2, y2, cornerSize, colour)
-{
-  ctx.fillStyle = colour;
-  ctx.strokeStyle = colour;
-  ctx.beginPath();
-  ctx.moveTo(x1 + cornerSize, y1);
-  ctx.lineTo(x2 - cornerSize, y1);
-  ctx.quadraticCurveTo(x2, y1, x2, y1 + cornerSize);
-  ctx.lineTo(x2, y2 - cornerSize);
-  ctx.quadraticCurveTo(x2, y2, x2 - cornerSize, y2);
-  ctx.lineTo(x1 + cornerSize, y2);
-  ctx.quadraticCurveTo(x1, y2, x1, y2 - cornerSize);
-  ctx.lineTo(x1, y1 + cornerSize);
-  ctx.quadraticCurveTo(x1, y1, x1 + cornerSize, y1);
-  ctx.stroke();
-  ctx.fill();
-  ctx.closePath();
+//let flock;
+
+
+let maxSpeedInitial = 2;
+let boidMaxSpeed = 3;
+let boidSeparationDist = 25.0;
+let boidAlignmentDist = 60;
+let boidCohesionDist = 50;
+let separationForce = 1;
+let alignmentForce = 1;
+let cohesionForce = 1;
+
+gui = new dat.GUI();
+gui.add(window, "maxSpeedInitial", 0, 50).step(1);
+// gui.add(window, "boidMaxSpeed", 0, 100).step(1);
+// gui.add(window, "boidSeparationDist", 0, 100).step(1);
+
+
+
+// Setup is called once the program starts
+function setup() {
+
+    // Create canvas
+    createCanvas(640, 400);
+  
+        // Create flock object
+    flock = new Flockmanager();
+  
+    // Create boids
+    for (let i = 0; i < 10; i++) {
+        let b = new Boid(width / 2,height / 2);
+        flock.createBoid(b);
+    }
 }
 
-// Start of JS file
-const canvas = document.querySelector("#canvas");
-const ctx = canvas.getContext("2d");
-let width = window.innerWidth;
-let height = window.innerHeight;
-canvas.width = width;
-canvas.height = height;
-ctx.font = "26px Courier New";
-ctx.textAlign = "left";
-let fontHeight = 30;
+// The main draw function
+function draw() {
+    //background(51);
+    clear();
+    flock.run();
+}
 
-let lineColour = 'rgba(50, 50, 50, 0.6)';
-let backgroundColor = 'rgba(213, 170, 6, 0.2)';
-let pointRadius = 2;
-let lineWidth = 5;
+// Mouse makes new boid on click
+function mouseClicked() {
+    flock.createBoid(new Boid(mouseX, mouseY));
+}
 
-// Draw boid
-function drawBoid(x, y, dir) {
-    // ctx.beginPath();
-    // ctx.arc(x, y, 2, 0, Math.PI*2);
-    // ctx.fill();
-    // ctx.closePath();
-    
-    let r1 = 15;
-    let r2 = 5;
-    let r3 = 7;
-    ctx.moveTo(x - r2 * Math.cos(dir) + r3 * Math.cos(dir + 90), y + r2 * Math.sin(dir) + r3 * Math.sin(dir + 90));
-    ctx.lineTo(x - r2 * Math.cos(dir) + r3 * Math.cos(dir - 90), y + r2 * Math.sin(dir) + r3 * Math.sin(dir - 90));
+function Flockmanager() {
+    this.boids = [];
+}
 
-    ctx.lineTo(x + r1 * Math.cos(dir), y + r1 * Math.sin(dir));
-    ctx.lineTo(x - r2 * Math.cos(dir) + r3* Math.cos(dir + 90), y + r2 * Math.sin(dir) + r3 * Math.sin(dir + 90));
-    ctx.fill();
+// 
+Flockmanager.prototype.run = function() {
+    for (let i = 0; i < this.boids.length; i++) {
+    // Tell each boid to update, according to the list of all boids that the manager has
+    this.boids[i].run(this.boids);  
+  }
+}
+
+// Add new boid to the simulation
+Flockmanager.prototype.createBoid = function(b) {
+    this.boids.push(b);
+}
+
+// Boid function
+function Boid(x, y) {
+    //// Navigation stats
+    // Maximum force for turning
+    this.maxforce = 0.05; 
+    // Boid maximum speed
+    this.maxspeed = boidMaxSpeed;
+
+    this.size = 4.0;
+
+    // Kinematics
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-maxSpeedInitial, maxSpeedInitial), random(-maxSpeedInitial, maxSpeedInitial));
+  
+}
+
+// Boid main script
+Boid.prototype.run = function(boids) {
+    // Update acceleration
+    this.update(boids);
+    this.drawBoid();
+}
+
+// Update the acceleration based on the flocking rules
+Boid.prototype.update = function(boids) {
+    // Separation
+    let separation = this.separate(boids);   
+    // Alignment
+    let alignment = this.align(boids);      
+    // Cohesion
+    let cohesion = this.cohere(boids);   
+  
+    // Scale the values to make them play nicely
+    separation.mult(separationForce);
+    alignment.mult(alignmentForce);
+    cohesion.mult(cohesionForce);
+    // Add the force vectors to acceleration
+    this.acceleration.add(separation);
+    this.acceleration.add(alignment);
+    this.acceleration.add(cohesion);
+
+    // Perhaps add mass? could make size propto mass? Acceleration = Force / Mass
+
+    // Update velocity
+    this.velocity.add(this.acceleration);
+    // Limit speed
+    this.velocity.limit(this.maxspeed);
+    this.position.add(this.velocity);
+    // Reset accelertion to 0 each cycle
+    this.acceleration.mult(0);
+
+
+    // Wrap boid position if goes out of bounds
+    if (this.position.x > width + this.size) this.position.x = -this.size;
+    if (this.position.x < -this.size)  this.position.x = width + this.size;
+
+    if (this.position.y > height + this.size) this.position.y = -this.size;
+    if (this.position.y < -this.size)  this.position.y = height + this.size;
 
 }
 
-function updateBoid(boid) {
+// Drawboid
+Boid.prototype.drawBoid = function() {
+    // Draw style settings for boid
+    fill(50, 50, 50, 50);
+    stroke(10, 10, 10, 40);
+    push();
 
+    // Get angle pi/2 rad from current heading - for drawing triangle
+    let angle = this.velocity.heading() + radians(90);
+  
+    translate(this.position.x, this.position.y);
+    rotate(angle);
+    beginShape();
+    vertex(0, -this.size * 2);
+    vertex(-this.size, this.size * 2);
+    vertex(this.size, this.size * 2);
+    endShape(CLOSE);
 
-    boid.dx = speed * Math.sin(time);
-    boid.dy = speed * Math.cos(time);
-
+    // Reset draw settings
+    pop();
 }
 
+// Separation
+Boid.prototype.separate = function(boids) {
 
-drawBoid(100, 100, 0);
+    // Turning vector
+    let turnTo = createVector(0, 0);
+    let turnForce = createVector(0, 0);
+    // Closeby boid counter for averaging
+    let count = 0;
 
+    // Find boids that are too close
+    for (let i = 0; i < boids.length; i++) {
+        let distance = p5.Vector.dist(this.position,boids[i].position);
+        // If the boid is closeby and not yourself (0 is returned if the boid is checking itself)
+        if ((distance > 0) && (distance < boidSeparationDist)) {
+        let displacement = p5.Vector.sub(this.position, boids[i].position);
+        displacement.normalize();
+        // Reduce for the distance
+        displacement.div(distance); 
+        // Set the vector to turn to
+        turnTo.add(displacement);
+        count++;            
+        }
+    }
+    // Take an average of the turn strength based on how many boids there are closeby
+    if (count > 0) {
+        turnTo.div(count);
+    }
 
+    if (turnTo.mag() > 0) {
+        // Turning force = desired vector - velocity
+        turnTo.normalize();
+        turnTo.mult(this.maxspeed);
+        turnForce = turnTo.sub(this.velocity);
+        turnForce.limit(this.maxforce);
+    }
+    return turnTo;
+}
 
+// Alignment
+Boid.prototype.align = function(boids) {
+    // Calculate average velocity for nearby boids
+
+    // Sum for overall neighbour velocity
+    let sum = createVector(0,0);
+
+    // Closeby boid counter
+    let count = 0;
+    for (let i = 0; i < boids.length; i++) {
+        let displacement = p5.Vector.dist(this.position,boids[i].position);
+        if ((displacement > 0) && (displacement < boidAlignmentDist)) {
+        sum.add(boids[i].velocity);
+        count++;
+        }
+    }
+
+    // If not yourself
+    if (count > 0) {
+        // Divide by the number of boids
+        sum.div(count);
+        sum.normalize();
+        sum.mult(this.maxspeed);
+        // Turning force = average velocity - boid velocity
+        let turnForce = p5.Vector.sub(sum, this.velocity);
+        turnForce.limit(this.maxforce);
+        return turnForce;
+    } else {
+        return createVector(0, 0);
+    }
+}
+
+// Cohesion
+Boid.prototype.cohere = function(boids) {
+
+    // Sum for all locations (to find average)
+    let sum = createVector(0, 0);   
+
+    // Nearby boid counter
+    let count = 0;
+    for (let i = 0; i < boids.length; i++) {
+        let d = p5.Vector.dist(this.position,boids[i].position);
+        if ((d > 0) && (d < boidCohesionDist)) {
+        sum.add(boids[i].position);
+        count++;
+        }
+    }
+    if (count > 0) {
+        // Average position of all local boids
+        target = sum.div(count);
+        // Turn towards the center
+
+        // Get direction towards target position
+        let targetVector = p5.Vector.sub(target, this.position);  
+        // Normalize the vector
+        targetVector.normalize();
+        // Apply movement speed
+        targetVector.mult(this.maxspeed);
+        // Turn force (targetVector - velocity)
+        let turnForce = p5.Vector.sub(targetVector, this.velocity);
+        turnForce.limit(this.maxforce);  // Limit to maximum steering force
+        return turnForce;
+    } else {
+        return createVector(0, 0);
+    }
+}
 
 
