@@ -2,11 +2,11 @@
 
 
 let maxSpeedInitial = 2;
-let boidMaxSpeed = 3;
+let boidMaxSpeed = 2;
 let boidSeparationDist = 25.0;
 let boidAlignmentDist = 60;
 let boidCohesionDist = 50;
-let separationForce = 1.5;
+let separationForce = 1.8;
 let alignmentForce = 1;
 let cohesionForce = 1;
 
@@ -16,6 +16,7 @@ let obstacleSize = 100;
 let avoidanceForce = 0.5;
 let obstacleMaxForce = 0.05;
 let boidObstacleDetectionDist = 200;
+
 
 //gui = new dat.GUI();
 //gui.add(window, "maxSpeedInitial", 0, 50).step(1);
@@ -27,8 +28,11 @@ let boidObstacleDetectionDist = 200;
 // Setup is called once the program starts
 function setup() {
 
+    let SimulationWidth = windowWidth * 4/5;
+    let SimulationHeight = windowHeight * 4/5;    
+
     // Create canvas
-    createCanvas(640, 400);
+    createCanvas(SimulationWidth, SimulationHeight);
   
         // Create flock object
     flock = new Flockmanager();
@@ -55,8 +59,18 @@ function setup() {
 
 // The main draw function - acts as the main script
 function draw() {
-    //background(51);
     clear();
+    let backgroundBoxBorderColour = 100;
+    let backgroundBoxColour = 10;
+    fill(backgroundBoxColour, backgroundBoxColour, backgroundBoxColour, 40);
+    stroke(backgroundBoxBorderColour, backgroundBoxBorderColour, backgroundBoxBorderColour, 40);
+    push();
+
+    let boxRounded = 10;
+    rect(0, 0, width, height, boxRounded, boxRounded, boxRounded, boxRounded);
+    //background(51, 51, 51, 40);
+    pop();
+
     flock.run();
 }
 
@@ -184,8 +198,15 @@ Boid.prototype.update = function(boids, obstacles) {
 // Drawboid
 Boid.prototype.drawBoid = function() {
     // Draw style settings for boid
-    fill(50, 50, 50, 50);
-    stroke(10, 10, 10, 40);
+    //fill(50, 50, 50, 50);
+    //stroke(10, 10, 10, 40);
+    boidFill = 200;
+    boidFillOpacity = 50;
+    boidStroke = 250;
+    boidStrokeOpacity = `00`;
+    fill(boidFill, boidFill, boidFill, boidFillOpacity);
+    stroke(boidStroke, boidStroke, boidStroke, boidStrokeOpacity);
+    
     push();
 
     // Get angle pi/2 rad from current heading - for drawing triangle
