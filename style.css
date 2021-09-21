@@ -10,7 +10,8 @@
 
 :root {
     --text-color: rgba(0, 0, 0, 0.6);
-
+    --box-size-w: 0.5vw;
+    --box-size-h: 0.5vh;
 }
 
 /* Typefaces */
@@ -71,6 +72,66 @@ h2 {
     padding: 0px;
     margin: 5vh;
     font-size: 3vh;
+}
+
+
+.notebox-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.notebox {
+    font-size: calc(2 * var(--box-size-w));
+    display: flex;
+    margin: calc(2 * var(--box-size-h));
+    padding: calc(2 * var(--box-size-w));
+    border-style: solid;
+    flex-wrap: wrap;
+    width: calc(50 * var(--box-size-w));
+    justify-content: center;
+}
+
+.notebox-h1 {
+    font-size: calc(3 * var(--box-size-w));
+    border-style: solid;
+    font-weight: bold;
+    width: inherit;
+}
+
+.notebox-stats {
+    border-style: solid;
+    font-weight: bold;
+    margin: calc(1 * var(--box-size-w)) calc(0 * var(--box-size-h));
+    padding: calc(1 * var(--box-size-w));
+    text-align: center;
+    align-items: center;
+    width: inherit;
+}
+
+.notebox-box-container {
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.notebox-box {
+    /* padding: 1vw; */
+    padding: calc(0.5 * var(--box-size-h)) calc(0.5 * var(--box-size-w));
+}
+
+.notebox-box-title {
+    min-width: calc(12 * var(--box-size-w));
+    border-style: solid;
+}
+
+.notebox-box-body {
+    border-top: 0;
+    border-style: solid;
+    padding: calc(2 * var(--box-size-h)) calc(0 * var(--box-size-w));
 }
 
 main {
