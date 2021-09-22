@@ -74,6 +74,9 @@ h2 {
     font-size: 3vh;
 }
 
+.notebox-base-container {
+    width: calc(140 * var(--box-size-w));
+}
 
 .notebox-container {
     display: flex;
@@ -132,6 +135,46 @@ h2 {
     border-top: 0;
     border-style: solid;
     padding: calc(2 * var(--box-size-h)) calc(0 * var(--box-size-w));
+}
+
+.notebox-input-container {
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.notebox-input {
+    color: var(--text-color);
+    background-color: rgba(0,0,0,0);
+    border-color: var(--text-color);
+    font-family: inherit;
+    padding: 2vh, 2vw;
+    border-style: solid;
+    border-radius: 0;
+    border-color: var(--text-color);
+    margin: calc(0.3 * var(--box-size-h)) calc(0.3 * var(--box-size-w));
+    padding: calc(0.25 * var(--box-size-h)) 0vw;
+    text-transform: uppercase;
+    width: calc(32 * var(--box-size-w));
+    height: calc(6 * var(--box-size-h));
+} :focus {
+    outline: none;
+}
+
+.notebox-input-button {
+    border-color: var(--text-color);
+    width: calc(64 * var(--box-size-w));
+    height: calc(6 * var(--box-size-h));
+    margin: calc(5 * var(--box-size-w));
+    border-style: solid;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition-duration: 0.5s;
+}
+.notebox-input-button:hover {
+    background-color: rgba(0,0,0,0.4);
+    transition-duration: 0.5s;
 }
 
 main {
