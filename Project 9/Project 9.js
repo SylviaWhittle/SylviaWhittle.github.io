@@ -177,10 +177,6 @@ function setup() {
     // noteboxInput_container.appendChild(createNoteboxInput(""));
     // noteboxInput_container.appendChild(createNoteboxInput(""));
 
-
-
-
-
     notebox_container = document.createElement('div');
     notebox_container.setAttribute('class','notebox-container');
 
