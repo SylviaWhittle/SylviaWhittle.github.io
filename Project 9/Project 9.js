@@ -1,7 +1,23 @@
 let input, button, greeting;
 
-
 // Entity class
+// All entities have a name, hp, header to store name and 
+// a box to store hp. Perhaps a {data stuct} to store a html 
+// element and a value to display?
+class Entity {
+    constructor(name, hp) {
+        this.name = name;
+        this.hp = hp;
+    }
+
+    takeDamage(damage) {
+        this.hp -= damage;
+    }
+
+    draw() {
+
+    }
+}
 
 // Must have : NAME, HP
 
@@ -79,7 +95,7 @@ function createNoteBox(name, str, dex, con, int, wis, cha, hp, maxhp, ac, spelld
     notebox.appendChild(stats);
 
     // Make notebox box container
-    var boxcontainer = document.createElement("div");
+    boxcontainer = document.createElement("div");
     boxcontainer.setAttribute('class','notebox-box-container');
 
         // Make notebox
@@ -95,7 +111,7 @@ function createNoteBox(name, str, dex, con, int, wis, cha, hp, maxhp, ac, spelld
 
         boxcontainer.appendChild(createSubBox('SPEED', spd));
 
-        //boxcontainer.appendChild(createDamageBox());
+        boxcontainer.appendChild(createDamageBox());
 
     // Append box container
     notebox.appendChild(boxcontainer);
@@ -192,79 +208,4 @@ function setup() {
 
     document.getElementById("notebox").appendChild(notebox_base_container);
 
-    
-
-    // create canvas
-  //createCanvas(width/2, height/2);
-
-//   inputName = createInput();
-//   inputName.position(20, 65);
-
-//   // Create array of entities
-//   entityList = [];
-
-//   entityList.push(new Entity("Test"));
-
-//   button = createButton('submit');
-//   button.position(inputName.x + inputName.width, 65);
-//   button.mousePressed(addEntity);
-
-//   greeting = createElement('h4', 'enter data');
-//   greeting.position(20, 5);
-
-//   textAlign(CENTER);
-//   textSize(20);
 }
-
-// function addEntity(name) {
-//     entityList.push(new Entity(inputName.value()))
-// }
-
-// function draw() {
-
-//     clear();
-
-//     for(let i = 0; i < entityList.length; i++) {
-
-//         verticalStep = 50;
-//         drawY = 50 + i * verticalStep;
-//         drawX = width/2;
-//         rectWidth = width * 5/6;
-//         rectHeight = verticalStep - 10;
-//         rectCurve = 10;
-
-//         fill(255, 255, 255, 80);
-//         strokeWeight(1);
-//         stroke(255, 255, 255, 100);
-//         push();
-
-//         // Draw border
-//         rect(drawX - rectWidth/2, drawY - rectHeight/2, rectWidth, rectHeight, rectCurve);
-//         pop();
-
-//         fill(0, 0, 0, 100);
-//         strokeWeight(1);
-//         stroke(0, 0, 0, 100);
-//         push();
-
-//         textAlign(LEFT);
-//         text(entityList[i].name, drawX - rectWidth/2 + 10, drawY + 8);
-
-//         pop();
-//     }
-// }
-
-// function greet() {
-//   const name = input.value();
-//   greeting.html('hello ' + name + '!');
-//   input.value('');
-// }
-
-
-// class Entity {
-
-//     constructor(inputName) {
-//         this.name = inputName
-//     }
-
-// }

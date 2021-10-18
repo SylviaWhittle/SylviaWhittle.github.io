@@ -43,7 +43,7 @@ function setup() {
         flock.createBoid(b);
     }
 
-    // Create obstacles
+    // //Create obstacles
     // for (let i = 0; i < 10; i++) {
     //     let obstacle = new Obstacle( 50 + 40 * i, 50, obstacleSize);
     //     flock.createObstacle(obstacle);
