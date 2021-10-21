@@ -4,6 +4,12 @@ function setup() {
 
   objectList = [];
 
+  // Mouse controls
+  mousePressedPos = {x: 0, y: 0};
+  mouseCurrentPos = {x: 0, y: 0};
+  dragging = false;
+  newPlanetVelocity = {x: 0, y: 0};
+
   // Constants
   g = 1;
   softening = 1;
@@ -37,15 +43,26 @@ function draw() {
     object = objectList[i];
     object.drawObject();
   }
+
+  if(dragging) {
+    push();
+    col_line = color(255, 255, 255);
+    col_line.setAlpha(200);
+    stroke(col_line);
+    line(mousePressedPos.x, mousePressedPos.y, mouseCurrentPos.x, mouseCurrentPos.y);
+    pop();
+  }
 }
 
 class Planet {
 
-  constructor(x, y, mass = random(5, 20)) {
+  constructor(x, y, mass = random(5, 20), velocity=createVector(random(-1,1), random(-1,1))) {
     this.mass = mass;
-    this.size = this.mass * 0.8;
+    //this.size = sqrt(mass)/Math.PI;
+    this.size = mass * 0.8;
     this.pos = createVector(x, y);
-    this.vel = createVector(random(-1,1), random(-1,1));
+    // this.vel = createVector(random(-1,1), random(-1,1));
+    this.vel = velocity;
     this.acc = createVector(0, 0);
     this.col = color(255 - random(100), 255 - random(100), 255 - random(100));
     this.col.setAlpha(50);
@@ -87,7 +104,7 @@ class Planet {
 
     // Draw object
     push();
-    fill(0, 0, 0, 0);
+    fill(0, 0, 0, 40);
     stroke(this.col);
     strokeWeight(2);
     circle(this.pos.x, this.pos.y, this.size * 2);
@@ -95,8 +112,23 @@ class Planet {
   }
 }
 
-function mouseClicked() {
-  _planet = new Planet(mouseX, mouseY);
+function mousePressed() {
+  //_planet = new Planet(mouseX, mouseY);
+  dragging = true;
+  mousePressedPos = {x: mouseX, y: mouseY};
+  mouseCurrentPos = {x: mouseX, y: mouseY};
+}
+
+function mouseDragged() {
+  mouseCurrentPos = {x: mouseX, y: mouseY};
+  mouseDisplacement = {x: mouseCurrentPos.x - mousePressedPos.x, y: mouseCurrentPos.y - mousePressedPos.y};
+  //mouseDistance = mouseCurrentPos.dist(mousePressedPos);
+  newPlanetVelocity = {x: mouseDisplacement.x, y: mouseDisplacement.y};
+}
+
+function mouseReleased() {
+  dragging = false;
+  _planet = new Planet(mousePressedPos.x, mousePressedPos.y, random(5, 20), createVector(newPlanetVelocity.x/10, newPlanetVelocity.y/10));
 }
 
 
@@ -112,7 +144,7 @@ function updatePhysics() {
     for(var j = 0; j < objectList.length; j++) {
       if(i != j) {
         otherObject = objectList[j];
-        displacement = createVector(otherObject.x - object.x, otherObject.y - object.y);
+        displacement = createVector(otherObject.pos.x - object.pos.x, otherObject.pos.y - object.pos.y);
         distanceToObject = object.pos.dist(otherObject.pos);
         directionToObject = pointDirection(object.pos.x, object.pos.y, otherObject.pos.x, otherObject.pos.y);
 
@@ -141,13 +173,17 @@ function updatePhysics() {
               if(!crashList.includes(j)){
                 crashList.push(j);
               }
-              object.vel.mult(0.8);
+              //object.vel.mult(0.8);
+              // object.mass += otherObject.mass/2;
+              // object.size += sqrt(otherObject.mass)/Math.PI;
             }
             else {
               if(!crashList.includes(i)){
                 crashList.push(i);
               }
-              otherObject.vel.mult(0.8);
+              //otherObject.vel.mult(0.8);
+              // otherObject.mass += object.mass/2;
+              // otherObject.size += sqrt(object.mass)/Math.PI;
             }
             
           }
@@ -172,10 +208,10 @@ function updatePhysics() {
 
   // If size is large enough, create smaller objects
   if(object.size > 3) {
-    for(var d=0; d<3; d++) {
-      spawnrange = object.size;
+    for(var d=0; d<8; d++) {
+      spawnrange = object.size*4;
       spawnspeed = 2;
-      _planet = new Planet(object.pos.x + random(-spawnrange, spawnrange), object.pos.y + random(-spawnrange, spawnrange), object.size/2);
+      _planet = new Planet(object.pos.x + random(-spawnrange, spawnrange), object.pos.y + random(-spawnrange, spawnrange), object.size/3);
       _planet.vel.set(random(-spawnspeed, spawnspeed), random(-spawnspeed, spawnspeed));
     }
   }
@@ -194,6 +230,20 @@ function updatePhysics() {
   for(var i=0;i<objectList.length;i++) {
     object = objectList[i];
     object.pos.add(object.vel);
+
+    // Wrap
+    if(object.pos.x < 0 - object.size){
+      object.pos.x = width + object.size;
+    }
+    if(object.pos.x > width + object.size) {
+      object.pos.x = 0 - object.size;
+    }
+    if(object.pos.y < 0 - object.size) {
+      object.pos.y = height + object.size;
+    }
+    if(object.pos.y > height + object.size){
+      object.pos.y = 0 - object.size;
+    }
 
   }
 
