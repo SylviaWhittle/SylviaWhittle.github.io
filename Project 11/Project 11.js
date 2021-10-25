@@ -3,6 +3,7 @@ function setup() {
   frameRate(60);
 
   objectList = [];
+  slider = new Slider();
 
   // Mouse controls
   mousePressedPos = {x: 0, y: 0};
@@ -35,6 +36,9 @@ function draw() {
   rect(0, 0, width, height)
   pop();
 
+  // Slider
+  slider.drawSlider();
+
   // Physics
   updatePhysics();
 
@@ -54,6 +58,58 @@ function draw() {
   }
 }
 
+class Slider {
+  constructor() {
+    this.x = width/2;
+    this.y = height/20;
+    this.width = width/2;
+    this.startValue = 0;
+    this.endValue = 30;
+    this.value = (this.endValue - this.startValue)/2;
+    this.sliderPosx = 0;
+    this.rectSize = 15;
+    this.sliderDragging = false;
+  }
+
+  drawSlider() {
+
+    push();
+    stroke(color(100));
+    fill(color(100));
+
+    line(this.x - this.width/2, this.y, this.x + this.width/2 , this.y);
+    this.sliderPosx = (this.x - this.width/2) + this.value / (this.endValue - this.startValue) * this.width;
+    rect(this.sliderPosx - this.rectSize/2, this.y - this.rectSize/2, this.rectSize, this.rectSize);
+    
+    textAlign(CENTER);
+    textSize(width / 30);
+    text('Mass: ' + this.value.toString(), this.x , this.y + 30)
+    
+    pop();
+  }
+
+  MousePress() {
+    if(mouseX < this.sliderPosx + this.rectSize/2 && mouseX > this.sliderPosx - this.rectSize/2 && mouseY < this.y + this.rectSize/2 && mouseY > this.y - this.rectSize/2) {
+      this.sliderDragging = true;
+      console.log("Slider pressed!")
+    }
+  }
+
+  SliderDrag() {
+    if(this.sliderDragging){
+      this.value = round(((mouseX - (this.x - this.width/2)) - this.startValue)/this.width * (this.endValue - this.startValue));
+      if(this.value > this.endValue) {this.value = this.endValue}
+      if(this.value < this.startValue) {this.value = this.startValue}
+    }
+  }
+
+  MouseRelease() {
+    console.log("Slider released!")
+    this.sliderDragging = false;
+  }
+
+}
+
 class Planet {
 
   constructor(x, y, mass = random(5, 20), velocity=createVector(random(-1,1), random(-1,1))) {
@@ -68,7 +124,7 @@ class Planet {
     this.col.setAlpha(50);
     this.col_line = this.col;
     this.col_line.setAlpha(150);
-    this.trailLength = 100;
+    this.trailLength = 20;
     this.trail = [];
     this.trailCounter = 0;
 
@@ -114,21 +170,35 @@ class Planet {
 
 function mousePressed() {
   //_planet = new Planet(mouseX, mouseY);
-  dragging = true;
-  mousePressedPos = {x: mouseX, y: mouseY};
-  mouseCurrentPos = {x: mouseX, y: mouseY};
+  slider.MousePress();
+
+  if(slider.sliderDragging != true) {
+    dragging = true;
+    mousePressedPos = {x: mouseX, y: mouseY};
+    mouseCurrentPos = {x: mouseX, y: mouseY};
+  }
 }
 
 function mouseDragged() {
-  mouseCurrentPos = {x: mouseX, y: mouseY};
-  mouseDisplacement = {x: mouseCurrentPos.x - mousePressedPos.x, y: mouseCurrentPos.y - mousePressedPos.y};
-  //mouseDistance = mouseCurrentPos.dist(mousePressedPos);
-  newPlanetVelocity = {x: mouseDisplacement.x, y: mouseDisplacement.y};
+
+  slider.SliderDrag();
+
+  if(!slider.sliderDragging) {
+    mouseCurrentPos = {x: mouseX, y: mouseY};
+    mouseDisplacement = {x: mouseCurrentPos.x - mousePressedPos.x, y: mouseCurrentPos.y - mousePressedPos.y};
+    //mouseDistance = mouseCurrentPos.dist(mousePressedPos);
+    newPlanetVelocity = {x: mouseDisplacement.x, y: mouseDisplacement.y};
+  }
 }
 
 function mouseReleased() {
-  dragging = false;
-  _planet = new Planet(mousePressedPos.x, mousePressedPos.y, random(5, 20), createVector(newPlanetVelocity.x/10, newPlanetVelocity.y/10));
+
+  if(!slider.sliderDragging) {
+    dragging = false;
+    _planet = new Planet(mousePressedPos.x, mousePressedPos.y, slider.value, createVector(newPlanetVelocity.x/10, newPlanetVelocity.y/10));
+  }
+
+  slider.MouseRelease();
 }
 
 
