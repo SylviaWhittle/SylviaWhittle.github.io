@@ -196,13 +196,13 @@ function setup() {
     notebox_container = document.createElement('div');
     notebox_container.setAttribute('class','notebox-container');
 
-    notebox_container.appendChild(createNoteBox('GOBBO', 8, 14, 9, 11, 12, 6, 20, 20, 12, 14, 15, 30));
+    notebox_container.appendChild(createNoteBox('TEST1', 8, 14, 9, 11, 12, 6, 20, 20, 12, 14, 15, 30));
 
-    notebox_container.appendChild(createNoteBox('GOBBO', 8, 14, 9, 11, 12, 6, 20, 20, 12, 14, 15, 30));
+    notebox_container.appendChild(createNoteBox('TEST2', 8, 14, 9, 11, 12, 6, 20, 20, 12, 14, 15, 30));
 
-    notebox_container.appendChild(createNoteBox('GOBBO', 8, 14, 9, 11, 12, 6, 20, 20, 12, 14, 15, 30));
+    notebox_container.appendChild(createNoteBox('TEST3', 8, 14, 9, 11, 12, 6, 20, 20, 12, 14, 15, 30));
 
-    notebox_container.appendChild(createNoteBox('GOBBO', 8, 14, 9, 11, 12, 6, 20, 20, 12, 14, 15, 30));
+    notebox_container.appendChild(createNoteBox('TEST4', 8, 14, 9, 11, 12, 6, 20, 20, 12, 14, 15, 30));
     
     notebox_base_container.appendChild(notebox_container);
 
