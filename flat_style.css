@@ -1,0 +1,89 @@
+
+/* NOTES */
+
+/* TEXT */
+/* Text size should be set using VW units. */
+/* Eg: <h1 style="font-size:10vw">Hello World</h1> */
+
+/* IMAGES */
+/* Images should be set to 100% width to be responsive */
+/* Eg: <img src="img.jpg" style="width:100%;"> */
+/* Max width can be used too: */
+/* <img src="img.jpg" style="max-width:100%;height:auto;"> */
+
+/* INLINE FORMATTING */
+/* Use <span> to do inline formatting */
+
+
+:root {
+    --main-bg-color: #161616;
+    --text-color: #c4c4c4;
+    --glow-text-color: #dddddd;
+    --glow-text-pink: #ffffff;
+    --glow-haze-pink: #ffffff;
+}
+
+.glow{
+    color: var(--glow-text-color);
+    text-shadow: 0 0 2px var(--glow-text-color), 0 0 5px var(--glow-text-color);
+}
+
+.glow-pink{
+    color: var(--glow-text-pink);
+    text-shadow: 0 0 1px var(--glow-haze-pink), 0 0 2px var(--glow-haze-pink), 0 0 5px var(--glow-haze-pink);
+}
+
+.link-emoticon{
+    font-size:12pt;
+}
+
+.desc{
+    margin-bottom: 5%;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 18pt;
+    text-decoration-thickness: 1px;
+    /* border-bottom: 1px solid #aaa; */
+    padding-bottom: 2px;
+    border-bottom-width: 1px;
+}
+a:visited {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+h1 {
+    font-weight: normal;
+    /* text-decoration: underline; */
+    text-decoration-thickness: 1px;
+    text-align: left;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: normal;
+}
+
+.standard-text{
+    font-size: medium;
+}
+
+body {
+
+    margin: 5% 10%;
+    background-color: var(--main-bg-color);
+
+    font-family: "Roboto Mono", 'Helvetica Neue', 'Courier New', Courier, monospace;
+    font-size: 16pt;
+    color: var(--text-color);
+    font-weight: normal;
+    text-align: center;
+    
+}
+
+/* STYLISTIC */
