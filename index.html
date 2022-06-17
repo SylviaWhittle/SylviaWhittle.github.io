@@ -1,51 +1,78 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width", initial-scale="1.0", charset="UTF-8">
-        <title>
-            Sylvia's Website
-        </title>
-        <link rel="stylesheet" href="flat_style.css">
-        <link rel="shortcut icon" type="image/x-icon" href="ProfileImage.ico">
-    </head>
 
-    <body>
-        <h1>Sylvia Whittle</h1>
+<head>
+    <meta name="viewport" content="width=device-width" , initial-scale="1.0" , charset="UTF-8">
+    <title>
+        Sylvia's Website
+    </title>
+    <link rel="stylesheet" href="flat_style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="ProfileImage.ico">
+</head>
 
-        <div class="desc">
-            Hi, I'm <span class=glow>Sylvia</span>. I like <span class="glow-pink">programming</span>.
-        </div>
+<body>
+    <h1>Sylvia Whittle</h1>
 
-        <div class="links">
-            <span class="link-emoticon">🔗 </span><a class="link" href="https://github.com/SylviaWhittle">github/SylviaWhittle</a>
-            <br>
-            <span class="link-emoticon">🔗 </span><a class="link" href="https://github.com/AFM-SPM/TopoStats">github/TopoStats</a>
-        
-        </div>
+    <div class="desc">
+        Hi, I'm <span class=glow>Sylvia</span>. I like <span class="glow-pink">programming</span>.
+    </div>
 
+    <div class="links">
+        <span class="link-emoticon">🔗 </span><a class="link"
+            href="https://github.com/SylviaWhittle">github/SylviaWhittle</a>
         <br>
-        <br>
+        <span class="link-emoticon">🔗 </span><a class="link"
+            href="https://github.com/AFM-SPM/TopoStats">github/TopoStats</a>
 
-        <div class="standard-text">
-            <h2>Example project: Damped Driven Pendulum</h4>
-            Chaotic dynamics in the driven, damped harmonic oscillator. The simulation below is a visualization of some work that I did in my degree. It shows the precession of a pendulum about a fixed point whilst being affected by not only gravity, but by a damping force - typically due to air resistance or friction with the pivot, and a periodic driving force, applied as the cosine of the product of the driving frequency and the time.
+    </div>
 
-            The Phase Portrait graph is a representation of the pendulum's motion in phase space, with the vertical axis being velocity and the horizontal axis being the angle. Note that this graph is wrapped from -pi to pi.
-                    
-            The Poincare Section is a periodic sampling of the datapoints in line with the driving frequency of the pendulum. This results in a shape being produced that is fractal in nature and is a visual representation of a Strange Attractor. In case you are interested in reproducing this result, the variables are: Driving frequency: 0.67, Damping coefficient: 2.0, Driving strength: 1.15.
-            
+    <br>
+    <br>
+
+    <div class="standard-text">
+        <h2>Example project: Damped Driven Pendulum</h4>
+            Chaotic dynamics in the driven, damped harmonic oscillator. The simulation below is a visualization of some
+            work that I did in my degree. It shows the precession of a pendulum about a fixed point whilst being
+            affected by not only gravity, but by a damping force - typically due to air resistance or friction with the
+            pivot, and a periodic driving force, applied as the cosine of the product of the driving frequency and the
+            time.
+
+            The Phase Portrait graph is a representation of the pendulum's motion in phase space, with the vertical axis
+            being velocity and the horizontal axis being the angle. Note that this graph is wrapped from -pi to pi.
+
+            The Poincare Section is a periodic sampling of the datapoints in line with the driving frequency of the
+            pendulum. This results in a shape being produced that is fractal in nature and is a visual representation of
+            a Strange Attractor. In case you are interested in reproducing this result, the variables are: Driving
+            frequency: 0.67, Damping coefficient: 2.0, Driving strength: 1.15.
+
             <br>
-            <canvas  id="canvas"></canvas>
+            <canvas id="canvas"></canvas>
             <script>
                 var _canvas = document.getElementById("canvas");
                 //_canvas.width = window.innerWidth/2;
                 // _canvas.height = window.innerHeight/3;
             </script>
-            <script src = "../PendulumScript.js"></script>
+            <script src="../PendulumScript.js"></script>
 
-                    <!-- Chaos Report -->
+            <!-- Chaos Report -->
             <br>
-            <span class="link-emoticon">🔗 </span><a href="../Chaos_Report.pdf"> A paper on this topic I wrote as part of my degree.</a> 
-        </div>
-    </body>
+
+            <span class="link-emoticon">🔗 </span><a href="../Chaos_Report.pdf"> A paper on this topic I wrote as part
+                of my degree.</a>
+
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+            Animation of a dynamical system's attractor.
+
+            <canvas id="dynamics_canvas"></canvas>
+
+            <script src="../Dynamics.js"></script>
+
+    </div>
+</body>
+
 </html>
