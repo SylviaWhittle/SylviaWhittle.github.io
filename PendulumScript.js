@@ -68,15 +68,15 @@ roundedRect(plotsCenterX - plotSize / 2, plotsCenterY - plotSize / 2, plotsCente
 // Background
 roundedRect(plotsCenterX + plotSize + plotSeparation - plotSize / 2, plotsCenterY - plotSize / 2, plotsCenterX + plotSize + plotSeparation + plotSize / 2, plotsCenterY + plotSize / 2, 10, plotBackgroundColour)
 
-main();
+Pendulum();
 
 // Main Loop
-function main() {
+function Pendulum() {
   DrawPendulum();
   UpdatePendulum();
   RK4();
   setTimeout(function onTick() {
-    main();
+    Pendulum();
   }, 0)
 }
 
